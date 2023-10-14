@@ -5,7 +5,10 @@ using Plots
 @polyvar x
 
 # Propagator for the free particle (Let ℏ = 1)
-K(x₀, x, t, m) = sqrt(m/(2*π*im*t)) * exp(-m*(x₀ - x)^2/t) # Scalar number
+# K(x₀, x, t, m) = sqrt(m/(2*π*im*t)) * exp(-m*(x₀ - x)^2/t) # Scalar number
+
+# Propagator for the harmonic oscillator (Let ℏ = 1)
+K(x₀, x, t, m, ω) = sqrt(m*ω/(2*π*im*sin(ω*t))) * exp((im*m*ω/(2*sin(ω*t)))*((x^2 + x₀^2)*cos(ω*t) - 2*x*x₀))
 P(Ψ) = real.(Ψ)^2 + imag.(Ψ)^2 # Convert to probability distribution
 
 simrange = 5 # Size of simulation (Because the way it's coded, ±simrange will have an infinite potential barrier)
@@ -15,8 +18,8 @@ dt = 0.1
 N = round(Int, simrange/(2 * dx)) # Number of x slots
 
 posVect = [(n * dx) for n in -N:N] # Position basis
-initVect = [exp(-(n * dx)^2 + 1) for n = -N:N] # Initial ket
-plot(posVect, initVect) # Plotting the initial condition
+initVect = [exp(-(n * dx + 1)^2 + 1) for n = -N:N] # Initial ket
+plot(posVect, P.(initVect)) # Plotting the initial condition
 
 # Propagator sampling
 function propagate(initVect, targetTime, posVect)
@@ -25,7 +28,7 @@ function propagate(initVect, targetTime, posVect)
     for i in range(1, vectSize)
         pdf = 0.0 + 0.0*im
         for j in range(1, vectSize)
-            pdf = pdf + initVect[j]*K(posVect[j], posVect[i], targetTime, 1)
+            pdf = pdf + initVect[j] * K(posVect[j], posVect[i], targetTime, 1, 1)
         end
         propVect[i] = pdf
     end
@@ -39,4 +42,4 @@ animation = @animate for t in tValues
     newVect = normalize(P.(propagate(initVect, t, posVect)))
     plot(posVect, [newVect], title = "t = $t", yrange = (0, 0.25))
 end
-gif(animation, "freeparticle.gif", fps = 30)
+gif(animation, "singleparticle.gif", fps = 30)
