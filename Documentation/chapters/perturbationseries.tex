@@ -1,0 +1,255 @@
+\chapter{Propagator and joint probability distribution}
+
+\section{General theory for the propagator of two particles}
+
+\subsection{Non-interacting systems}
+
+The propagator for a single particle system is used to find the probability distribution $\tilde{P}(x)$ of a state at anytime, i.e., for a state $\ket{\psi(t_0)}$,
+\begin{equation}
+    \tilde{P}(q_F, t_F) = \braket{q_F}{\psi(t_F)} = \int\dd{q_0}K(q_0, \Dd{t})\psi(q_0, t_0).
+\end{equation}
+When taken the modulus squared, $|\tilde{P}(q_F, t_F)|^2$, or just $P(q_F, t_F)$, represents the probability of finding that particle at the point $(q_F, t_F)$ in spacetime.
+
+We shall then extend this idea to describe a two particle system. Let there be a state ket $\ket{\eta(t)}$, which simultaneously represents the state of both particle one and particle two. Assume that at some point in time, $\ket{\eta}$ is separable:
+\begin{equation}
+    \ket{\eta(t_0)} = \ket{\psi(t_0)} \tensor \ket{\phi(t_0)}.
+\end{equation}
+If the subsystem of $\ket{\eta}$ is non interacting, the Hamiltonian must be completely separable, which also implies that the time evolution operator $\hat{U}$ is also separable. Consider $\braket{q_F, q_F'}{\eta(t_F)}$ where the unprimed $q$ belongs to the position in the Hilbert space of particle one, and the primed $q$'s, in Hilbert space of particle two.
+\begin{align*}
+    \braket{q_F, q_F'}{\eta(t_F)} &= \bra{q_F, q_F'}\left(\ket{\psi_i(t_F)}\ket{\phi_i(t_F)}\right) \\
+    &= \psi_i(q_F, t_F)\phi_i(q_F', t_F') \\
+    &= \iint K_{\psi}(q_F, t_F; q_0, t_0)K_{\phi}(q_F', t_F'; q_0', t_0')\left[\psi_i(q_F, t_F)\phi_i(q_F', t_F')\right] \dd{q_0}\dd{q_0'}.
+\end{align*}
+For most systems, $K_{\psi}$ and $K_{\phi}$ is identical because both $\psi_i$ and $\phi_i$ is affected by the same potential. But for some, $K_{\psi}$ and $K_{\phi}$ might not be identical. E.g., if $\psi$ is in a potential well, but $\phi$ is a free particle that's infinitely far away. $K_{\psi}$ must be of the potential well, and $K_{\phi}$ must be of the free particle.
+
+It can be seen that $\braket{q_F, q_F'}{\eta(t_F)}$ represents the probability distribution of both the two particles. E.g., for a state ket $\ket{\psi}\tensor\ket{\phi}$,
+\begin{align}
+    & (\bra*{q_F}\bra*{q_F'})(\ket*{\psi(t_F)}\ket*{\phi(t_F')}) \\
+    &= \braket*{q_F}{\psi(t_F)}\braket*{q_F'}{\phi(t_F')} \label{eq:prejointprobability1}\\
+    &= \iint\dd{q_0}\dd{q_0'}K(q_F, t_F; q_0, t_0)K(q_F', t_F';q_0', t_0')(\psi(q_0, t_0)\phi(q_0', t_0')) \\
+    &= \int\dd{q_0}K(q_F, t_F; q_0, t_0)\psi(q_0, t_0)\int\dd{q_0'}K(q_F', t_F';q_0', t_0')\phi(q_0', t_0'), \label{eq:prejointprobability2}
+\end{align}
+\cref{eq:prejointprobability1} says that $\braket{q_F, q_F'}{\eta(t_F)}$ is the product of the probability that $\psi$ is at $(q_F, t_F)$, and $(q_F', t_F')$. Therefore, $\braket{q_F, q_F'}{\eta(t_F)}$ represents the joint probability distribution of the two states, and it can be found via the product of propagators,
+\begin{equation}
+    K(q_F, t_F; q_0, t_0)K(q_F', t_F';q_0', t_0').
+\end{equation}
+
+
+\subsection{Interacting systems}
+
+Let there be a state ket $\ket{\eta}$ which describes the quantum state of two particles. When the two particles are interacting, the time-evolution operator cannot be factored into tensor products of two operators. Therefore, there can only be one combined time-evolution operator for both of the systems:
+\begin{equation}
+    \hat{U}(t_F, t_0) = \exp[-\im\Dd{t}\left(\frac{\hat{p}^2}{2m} + \frac{\hat{p}'^2}{2m'} + V(\hat{q}, \hat{q}', t)\right)]
+\end{equation}
+The consequence of the combined time-evolution operator is that, we cannot calculate the joint probability distribution between different time of the subsystem. For simplicity’ sake, let the index $j = i + 1$, where $t_j = t_i + \Dd{t}$ in which $\Dd{t} \appr 0$.
+\begin{align}
+    &\braket{q_j, q_j'}{\eta(t_j)} \\
+    &= \mel{q_j, q_j'}{\hat{U}(t_j, t_i)}{\eta(t_i)}. \\
+    &= \iint \dd{q_i}\dd{q_i'} \mel{q_j, q_j'}{\hat{U}(t_j, t_i)}{q_i, q_i'}\braket{q_i, q_i'}{\eta(t_i)}.
+\end{align}
+
+As seen, the form of transition element is
+\begin{equation}
+    \mel{q_j, q_j'}{\exp[-\im\Dd{t}\left(\frac{\hat{p}^2}{2m} + \frac{\hat{p}'^2}{2m'} + V(\hat{q}, \hat{q}', t)\right)]}{q_i, q_i'}.
+\end{equation}
+The terms in the exponents can be separated due to the vanishing commutator when $\Dd{t} \appr 0$. By separating the terms in the exponents and inserting two complete sets of momentum basis, the equation above turns into
+\begin{align}
+    & \frac{1}{(2\cpi)^2} \iint\dd{p}\dd{p'} \mel{q_j, q_j'}{\exp[-\im\Dd{t}\frac{\hat{p}^2}{2m}]}{p, p'}\mel{p, p'}{\exp[-\im\Dd{t}\frac{\hat{p}'^2}{2m'}]\exp[-\im\Dd{t}V(\hat{q}, \hat{q}', t)]}{q_i, q_i'} \nonumber\\
+    &= \frac{1}{(2\cpi)^2} \iint\dd{p}\dd{p'} \exp[-iu\Dd{t}\left(\frac{p^2}{2m} + \frac{p'^2}{2m'} + V(q_i, q_i, \Dd{t})\right)]\braket{q_j}{p}\braket{q_j'}{p'}\braket{q_i}{p}\conj\braket{q_j'}{p'}\conj \nonumber\\
+    &= \frac{1}{(2\cpi)^4} \e^{-\im\Dd{t}V(q_i, q_i', t)} \int\dd{p}\exp[-\im\Dd{t}\frac{p^2}{2m} + \im p(q_j - q_i)]\int\dd{p'}\exp[-\im\Dd{t}\frac{p'^2}{2m'} + \im p'(q_j' - q_i')^2] \nonumber\\
+    &= \frac{(mm')^{\frac{1}{2}}}{8\cpi^3\im\Dd{t}}\exp[-\im\Dd{t}V(q_i, q_i', t) + \frac{\im m'}{2\Dd{t}}(q_j' - q_i')^2 + \frac{\im m}{2\Dd{t}}(q_j - q_i)^2].
+\end{align}
+To find the propagator for an interacting system, we need to perform successive integrals on $q$ and $q'$, i.e.,
+\begin{equation}
+    K_{\eta} = \idotsint \dd{q_N}\dd{q_N'}\dots\dd{q_1}\dd{q_1'}\mel{q_F, q_F'}{\hat{U}(t_F, t_N)}{q_N, q_N'}\dots\mel{q_1, q_1'}{\hat{U}(t_1, t_0)}{q_0, q_0'}
+\end{equation}
+
+Notice that when there is no interaction between the two systems ($V = 0$), the integrals become separable and reduces down to the form of the non-interacting system's propagator but off by a normalization factor.
+
+There are two common forms of interaction, which is the spring interaction and the coulomb interaction. Both of which includes the term $(q_i - q_i')^2$ in $V(q, q')$, which causes major problems in integration. When expanded, there is a $q_iq_i'$ term that makes the integral inseparable which causes the integral pattern to not repeat; therefore, we resort to perturbation.
+
+\section{Form of the two particle perturbation series}
+
+The perturbation series for one particle are already given by Feynman in his path integrals textbook:
+\begin{equation}
+    K_n(F, 0) = \left(-\im\right)^n\idotsint K_0(F, n)\prod_{i = 1}^n V(i)K(i, i - 1)\dd{\tau_i}
+\end{equation}
+where $K(j, k) = K(q_j, t_j; q_k, t_k)$. To apply it with two particles, we extend it:
+\begin{equation}
+    K_n(F, 0; F', 0') = \left(-\im\right)^n\idotsint K_0(F, n)K_0(F', n')\left[\prod_{i = 1}^nV(i)K(i, i - 1)K(i', i - 1')\dd{q_i}\dd{q_i'}\right]\dd{t}. \label{eq:generaltwoparticleperturbation}
+\end{equation}
+For some potential, it is possible to evaluate this series term by term analytically using the Meijer's $G$ function.
+
+\section{The spring system}
+
+The spring potential is given by $V(q, q') = (q - q')^2.$
+
+\subsection{First order perturbation term}
+
+From \cref{eq:generaltwoparticleperturbation}, and setting $t_1 = t, t_0 = 0$
+\begin{align}
+    &K_1(F, 0; F', 0) \nonumber \\
+    &= \left(-\im\right)^1\idotsint K_0(F, 1)K_0(F', 1')K_0(1, 0)K_0(1, 0')(q_1 - q_1')^2\dd{q_1}\dd{q_1'}\dd{t}. \\
+    &= -\im\int_0^{t_F}\left[\iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)(q_1 - q_1')^2\dd{q_1}\dd{q_1'}\right]\dd{t}. \nonumber
+\end{align}
+We then let the terms in the square bracket,
+\begin{equation}
+    \iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)(q_1 - q_1')^2\dd{q_1}\dd{q_1'}
+\end{equation}
+equals $I_1$; therefore, $K_1 = -\im\int_0^{t_F} I_1\dd{t}$.
+
+To evaluate $I_1$, first expand the potential term, and separate $I_1$ into three integrals:
+\begin{gather}
+    I_{P1} = \int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \int K_0(q_F', q_1'; t_F, t)K_0(q_1', q_0'; t)\dd{q_1'} \label{eq:spring_IP1}\\
+    I_{P2} = \int K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t) \int q_1'^2K_0(q_F', q_1'; t_F, t)K_0(q_1', q_0'; t)\dd{q_1'} \label{eq:spring_IP2}\\
+    I_{P3} = \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t) \int q_1'K_0(q_F', q_1'; t_F, t)K_0(q_1', q_0'; t) \dd{q_1'} \label{eq:spring_IP3}
+\end{gather}
+where $I_1 = I_{P1} + I_{P2} + 2I_{P3}$. The integrals without leading terms $q_1$ and $q_1^2$ can be immediately reduced into the kernel for the free particle $K_0(F, 0)$ and $K_0(F', 0')$:
+\begin{gather}
+    I_{P1} = K_0(q_F', q_0'; t_F)\int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \\
+    I_{P2} = K_0(q_F, q_0; t_F)\int K_0(q_F', q_1'; t_F - t)K_0(q_1', q_0'; t)\dd{q_1'}
+\end{gather}
+The integral $I_{P2}$ can be obtained from $I_{P1}$ by switching all the primed variables with the corresponding unprimed variables. We're then left with two family of integrals:
+\begin{equation}
+    \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \mathand \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1}. \label{eq:family_of_integrals}
+\end{equation}
+To evaluate these, we first simplify the product of kernel:
+\begin{align}
+    &K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t) \nonumber\\
+    &= \left(\frac{m}{2\cpi\im(t_F - t)} \cdot \frac{m}{2\cpi\im t}\right)^{\frac{1}{2}} \exp[-\frac{\im m}{2(t_F - t)}(q_F - q_1)^2 - \frac{\im m}{2t}(q_1 - q_0)^2] \\
+    &= \frac{m}{2\cpi}\sqrt{\frac{1}{t(t - t_F)}} \exp[q_1^2\left(\frac{\im m}{2t} + \frac{\im m}{2(t_F - t)}\right) - q_1\left(\frac{\im m q_0}{t} + \frac{\im m q_F}{t_F - t}\right) + \left(\frac{\im m q_0^2}{2t} + \frac{\im m q_F^2}{2(t_F - t)}\right)] \nonumber \\
+    &= \frac{m}{2\cpi}\sqrt{\frac{1}{t(t - t_F)}} \exp[q_1^2\left(\frac{\im m t_F}{2t(t_F - t)}\right) + q_1(-\im m)\left(\frac{q_0}{t} + \frac{q_F}{t_F - t}\right) + \left(\frac{\im m}{2}\right)\left(\frac{q_0^2}{t} + \frac{q_F^2}{t_F - t}\right)] \nonumber
+\end{align}
+The normalization factor are pulled out. From \cref{sec:table_of_gaussian_integrals}, both integrals in \cref{eq:family_of_integrals} can be evaluated with
+\begin{equation}
+    a = \frac{m t_F}{2\im t(t_F - t)}, \quad b = \im m\left(\frac{q_0}{t} + \frac{q_F}{t_F - t}\right) \mathand c = \left(\frac{m}{2\im}\right)\left(\frac{q_0^2}{t} + \frac{q_F^2}{t_F - t}\right)
+\end{equation}
+The exponential part of both family of integrals evaluates to
+\begin{equation}
+    \exp[\frac{b^2}{4a} - c] = \exp[\frac{\im m}{2t_F}(q_F - q_0)^2] = \sqrt{\frac{2\cpi\im t}{m}}K_0(q_F, q_0; t_F).
+\end{equation}
+
+On the first family of integral,
+\begin{align}
+    &\int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \\
+    &= \frac{1}{2} \times -\im m\left(\frac{q_0}{t} + \frac{q_F}{t_F - t}\right)\sqrt{\cpi \cdot \left(\frac{m t_F}{2\im t(t_F - t)}\right)^{-3}}\sqrt{\frac{2\cpi\im t}{m}}K_0(q_F, q_0; t_F). \\
+    &= \im m \sqrt{2\cpi\frac{\im t^3 (t - t_F)^3}{m^3t_F^3}}\cdot\frac{q_0(t - t_F) + q_Ft}{t(t - t_F)}\sqrt{\frac{2\cpi\im t}{m}}K_0(q_F, q_0; t_F). \\
+    &= \frac{2\cpi m}{\im}\sqrt{\frac{\im t}{m}}\sqrt{\frac{\im t^3 (t - t_F)^3}{m^3t_F^3}}\cdot\frac{q_0(t - t_F) + q_Ft}{t(t - t_F)}K_0(q_F, q_0; t_F)
+\end{align}
+On the second family of integral,
+\begin{align}
+    &\int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \\
+    &= m\sqrt{2\cpi\frac{t^5(t - t_F)^5}{\im m^5 t_F^5}}\cdot\frac{-m(q_0(t - t_F) - q_Ft)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2}{t^2(t - t_F)^2}\sqrt{\frac{2\cpi\im t}{m}}K_0(q_F, q_0; t_F) \nonumber \\
+    &= -2\cpi m \sqrt{\frac{\im t}{m}}\sqrt{\frac{t^5(t - t_F)^5}{\im m^5 t_F^5}}\cdot\frac{-m(q_0(t - t_F) - q_Ft)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2}{t^2(t - t_F)^2}K_0(q_F, q_0; t_F).
+\end{align}
+To summarize, here are the integrals from \cref{eq:spring_IP1,eq:spring_IP2,eq:spring_IP3} that I haven't canceled or modify anything yet:
+\begin{gather}
+    I_{P1} = \begin{multlined}[t]
+        -2\cpi m \sqrt{\frac{\im t}{m}}\sqrt{\frac{t^5(t - t_F)^5}{\im m^5 t_F^5}}\cdot\frac{-m(q_0(t - t_F) - q_Ft)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2}{t^2(t - t_F)^2} \\ \times K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F)
+    \end{multlined} \\
+    I_{P2} = \begin{multlined}[t]
+        -2\cpi m \sqrt{\frac{\im t}{m}}\sqrt{\frac{t^5(t - t_F)^5}{\im m^5 t_F^5}}\cdot\frac{-m(q_0'(t - t_F) - q_F't)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2}{t^2(t - t_F)^2} \\ \times K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F)
+    \end{multlined}[t] \\
+    I_{P3} = \begin{multlined}[t]
+        4\cpi^2\frac{t^4 (t - t_F)^3}{m^2t_F^3}\cdot\frac{\left(q_0(t - t_F) + q_Ft\right)\left(q_0'(t - t_F) + q_F't\right)}{t^2(t - t_F)^2} \times K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F)
+    \end{multlined}
+\end{gather}
+
+Recall that
+\begin{equation}
+    K_1 = -\im\int_0^{t_F} I_1\dd{t} = -\im\left[\int_0^{t_F} I_{P1}\dd{t} + \int_0^{t_F} I_{P2}\dd{t} + \int_0^{t_F} I_{P3}\dd{t}\right].
+\end{equation}
+Beginning from $I_{P3}$, most of the terms in the integral can be pulled outside. With some cancellation,
+\begin{multline}
+    \int I_{P3}\dd{t} =
+        \frac{4\cpi^2}{m^2t_F^3} \times K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \\
+        \times\int_0^{t_F} t^2 (t - t_F){\left(q_0(t - t_F) + q_Ft\right)\left(q_0'(t - t_F) + q_F't\right)} \dd{t}:
+\end{multline}
+Taking the integral only,
+\begin{align}
+    &\int_0^{t_F} t^2 (t - t_F){\left(q_0(t - t_F) + q_Ft\right)\left(q_0'(t - t_F) + q_F't\right)} \dd{t} \\
+    &= \begin{multlined}[t]
+        \int_0^{t_F} (-q_0'q_0)t_F^3t^2 + (3q_0'q_0 + q_0'q_F + q_F'q_0)t_F^2t^3 + (-3q_0'q_0 - 2q_0'q_F - 2q_F'q_0 - q_F'q_F)t_Ft^4 \\
+        + (q_0'q_0 + q_0'q_F + q_F'q_0 + q_F'q_F)t^5 \dd{t}
+    \end{multlined} \\
+    &= \begin{multlined}[t]
+        - \frac{q'_{0} q_{0} t_{F}^{6}}{3} + \frac{t_{F}^{6}}{6} \left({q'_{0} q_{0}} + {q'_{0} q_{F}} + {q'_{F} q_{0}} + {q'_{F} q_{F}}\right) - \frac{t_{F}^{6}}{5} \left(3 q'_{0} q_{0} + 2 q'_{0} q_{F} + 2 q'_{F} q_{0} + q'_{F} q_{F}\right)\\ + \frac{t_{F}^{6}}{4}\left(3 q'_{0} q_{0} + q'_{0} q_{F} + q'_{F} q_{0}\right)
+    \end{multlined} \\
+    &= \frac{t_F^6}{60}(q_0'(q_F - q_0) + q_F'(q_0 - 2q_F)) \label{eq:spring_1storder_intIP3}
+\end{align}
+Therefore,
+\begin{equation}
+    \int_0^{t_F}I_{P3}\dd{t} = \frac{\cpi^2t_F^3}{15m^2}(q_0'(q_F - q_0) + q_F'(q_0 - 2q_F)) \times K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F)
+\end{equation}
+
+We then evaluate $I_{P1}$ next:
+\begin{align}
+    \int I_{P1}\dd{t} &= \begin{multlined}[t]
+        \shoveleft{\int_0^{t_F} -2\cpi m \sqrt{\frac{\im t}{m}}\sqrt{\frac{t^5(t - t_F)^5}{\im m^5 t_F^5}}\cdot K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F)} \\
+        \shoveright{\times\frac{-m(q_0(t - t_F) - q_Ft)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2}{t^2(t - t_F)^2}\dd{t}}
+    \end{multlined} \\
+    &= \begin{multlined}[t]
+        -2\cpi m K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \\
+        \times \int_0^{t_F} \frac{t}{m^3}\sqrt{\frac{t - t_F}{t_F^5}}\cdot(-m(q_0(t - t_F) - q_Ft)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2)
+    \end{multlined} \\
+    &= \begin{multlined}[t]
+        -\frac{2\cpi}{m^2t_F^5} K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \\
+        \times \int_0^{t_F} t\sqrt{t - t_F}\left(-m(q_0(t - t_F) - q_Ft)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2\right) \dd{t}
+    \end{multlined} \\
+\end{align}
+Taking out only the integral,
+\begin{align}
+    &\int_0^{t_F} t\sqrt{t - t_F}\left(-m(q_0(t - t_F) - q_Ft)^2 + \im t^2(t - t_F) - \im t(t - t_F)^2\right) \dd{t} \\
+    &= \begin{multlined}[t]
+        -\int_0^{t_F} t \sqrt{t - t_{F}} \big(m q_{0}^{2} t^{2} - 2 m q_{0}^{2} t t_{F} + m q_{0}^{2} t_{F}^{2} - 2 m q_{0} q_{F} t^{2} \\+ 2 m q_{0} q_{F} t t_{F} + m q_{F}^{2} t^{2} - i t^{2} t_{F} + i t t_{F}^{2}\big) \dd{t}
+    \end{multlined} \\
+    &= \begin{multlined}[t]
+        \frac{2}{3} mq_F^2t_F^3(-t_F)^{\frac{3}{2}} + \frac{2}{9}(-t_F)^{\frac{9}{2}}(mq_0^2 - 2mq_0q_F + mq_F^2 - \im t_F) \\
+        + \frac{2}{7}(-t_F)^{\frac{7}{2}}(mq_0^2t_F - 4mq_0q_Ft_F + 3mq_F^2t_F - 2\im t_F^2) \\+ \frac{2}{5}(-t_F)^{\frac{5}{2}}(-2mq_0q_Ft_F^2 + 3mq_F^2t_F^2 - \im t_F^3)
+    \end{multlined} \\
+    &= \frac{4}{315\im}t_F^9(-5mq_0^2 - 8mq_0q_F - 8mq_F^2 - 4\im t_F);
+\end{align}
+therefore,
+\begin{align}
+    \int_{0}^{t_F} I_{P1} &= -\frac{2\cpi}{m^2t_F^5} K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \times \frac{4}{315\im}t_F^9(-5mq_0^2 - 8mq_0q_F - 8mq_F^2 - 4\im t_F) \\
+    &= \frac{8\cpi\im}{315m^2}t_F^4(-5mq_0^2 - 8mq_0q_F - 8mq_F^2 - 4\im t_F) \times K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F).\label{eq:spring_1storder_intIP1}
+\end{align}
+And in a similar manner,
+\begin{equation}
+    \int_{0}^{t_F}I_{P2}\dd{t} = \frac{8\cpi\im}{315m^2}t_F^4(-5mq_0'^2 - 8mq_0'q_F' - 8mq_F'^2 - 4\im t_F) \times K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F).\label{eq:spring_1storder_intIP2}
+\end{equation}
+
+Combining \cref{eq:spring_1storder_intIP1,eq:spring_1storder_intIP2,eq:spring_1storder_intIP3} together, the first order perturbation propagator is then equal to
+\begin{multline}
+    K_1(F, 0) = K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \times \im \left(\frac{t_F^6}{60}(q_0'(q_F - q_0) + q_F'(q_0 - 2q_F)) \right.\\ \left. \times \frac{8\cpi\im}{315m^2}t_F^4\left(-5mq_0^2 - 8mq_0q_F - 8mq_F^2 - 4\im t_F - 5mq_0'^2 - 8mq_0'q_F' - 8mq_F'^2 - 4\im t_F\right) \right)
+\end{multline}
+
+From the form of the first order perturbation propagator, it might be that this theory is non-perturbative due to the $t_F^6$ and $t_F^4$ term which scales massively with time. To my knowledge, this interaction problem is not in the list of non-perturbative problems. Therefore, I shall proceed and try to evaluate the second order perturbation term because I'm masochistic enough.
+
+\subsection{Second order perturbation term}
+
+The second order perturbation term, $K_2$ is
+\begin{align}
+    K_2 &= \idotsint K_0(F, 2)V(2)K_0(2, 1)V(1)K_0(1, 0)\dd{q_1}\dd{q_1'}\dd{t_1}\dd{q_2}\dd{q_2'}\dd{t_2} \\
+    &= \begin{multlined}[t]
+        \idotsint K_0(q_F, q_2; t_F - t_2)K_0(q_F', q_2'; t_F - t_2)K_0(q_2, q_1; t_2 - t_1)K_0(q_2, q_1; t_2 - t_1) \\ \times K_0(q_1, q_0; t_1 - t_0)K_0(q_1, q_0; t_1 - t_0)(q_2 - q_2')^2(q_1 - q_1')^2\dd{q_1}\dd{q_1'}\dd{t_1}\dd{q_2}\dd{q_2'}\dd{t_2}
+    \end{multlined} \\
+    &= \begin{multlined}[t]
+        \int_{t_1}^{t_F}\int_{t_0}^{t_F}\left[\idotsint K_0(q_F, q_2; t_F - t_2)K_0(q_F', q_2'; t_F - t_2)K_0(q_2, q_1; t_2 - t_1)\right. \\ \times K_0(q_2, q_1; t_2 - t_1)K_0(q_1, q_0; t_1 - t_0)K_0(q_1, q_0; t_1 - t_0) \left(\vphantom{\left(q_{2}^{\prime}\right)^{2}} q_{1}^{2} q_{2}^{2} - 2 q_{1}^{2} q_{2} q_{2}^{\prime} \right.\\ + q_{1}^{2} \left(q_{2}^{\prime}\right)^{2} - 2 q_{1} q_{2}^{2} q_{1}^{\prime} + 4 q_{1} q_{2} q_{1}^{\prime} q_{2}^{\prime} - 2 q_{1} q_{1}^{\prime} \left(q_{2}^{\prime}\right)^{2} + q_{2}^{2} \left(q_{1}^{\prime}\right)^{2} \\ \left.\left. - 2 q_{2} \left(q_{1}^{\prime}\right)^{2} q_{2}^{\prime} + \left(q_{1}^{\prime}\right)^{2} \left(q_{2}^{\prime}\right)^{2} \right) \dd{q_1}\dd{q_1'}\dd{q_2}\dd{q_2'}\dd{t_1}\dd{t_2} \vphantom{\idotsint}\right]
+    \end{multlined}
+\end{align}
+The integral once again can be broken into nine integrals that must be integrated w.r.t. time twice later on. All those nine integrals have a product of propagator as a multiplier. Therefore, we shall evaluate those first:
+\begin{align}
+    &\begin{multlined}[t]
+        K_0(q_F, q_2; t_F - t_2)K_0(q_F', q_2'; t_F - t_2)K_0(q_2, q_1; t_2 - t_1)K_0(q_2, q_1; t_2 - t_1)K_0(q_1, q_0; t_1 - t_0) \\ \times K_0(q_1, q_0; t_1 - t_0)
+    \end{multlined} \nonumber \\
+    &= \begin{multlined}[t]
+        \frac{\im m^3}{8\cpi^3(t_F - t_2)(t_2 - t_1)(t_1 - t_0)}\exp \left[\frac{\im m}{2(t_F - t_2)}\left((q_F - q_2)^2 + (q_F' - q_2')^2\right) \right. \\ \left. + \frac{\im m}{2(t_2 - t_1)}\left((q_2 - q_1)^2 + (q_2' - q_1')^2\right) + \frac{\im m}{2(t_1 - t_0)}\left((q_1 - q_0)^2 + (q_1' - q_0')^2\right)\right]
+    \end{multlined}
+\end{align}
+
+\subsection{The joint probability distribution}
+
+\section{The delta potential collision system}
+
+\section{The coulomb problem}

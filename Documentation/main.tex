@@ -1,0 +1,223 @@
+\documentclass[a4paper, 11pt, openleft]{memoir}
+
+\usepackage{indentfirst}
+
+% Fonts
+\usepackage[no-math]{fontspec}
+\setmainfont{ZillaSlab}[
+    Path = fonts/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    ItalicFont = *-Italic,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+    Ligatures = {TeX, Common}
+]
+\defaultfontfeatures{Mapping = tex-text, Scale = MatchLowercase}
+\usepackage{mathtools}
+\usepackage[math-style = TeX, mathrm = sym, warnings-off = {mathtools-colon}]{unicode-math}
+\setmathfont[Scale = MatchLowercase]{Concrete-Math.otf}
+\setoperatorfont\symscr
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{L}{>{$}l<{$}}
+\newcolumntype{R}{>{$}r<{$}}
+
+% Page Layout and Margins
+\setsecnumdepth{subsection}
+\settocdepth{subsection}
+\setlrmarginsandblock{4cm}{1cm}{*}
+\setulmarginsandblock{3cm}{2cm}{*}
+\setlength{\headheight}{24.90704pt}
+\setlength{\parindent}{1.5cm}
+\setlength{\parskip}{0.3em}
+\setlength{\beforechapskip}{20pt}
+\noDisplayskipStretch
+\allowdisplaybreaks
+\setSpacing{1.4}
+\XeTeXlinebreakskip=0pt plus 3pt
+\checkandfixthelayout
+
+% Footnotes
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[LE]{\textbf{\thepage ~ $\big\vert$ \leftmark ~(Revision: \today, Puripat Thumbanthu)}}
+\fancyhead[RO]{\textbf{(Revision: \today, Puripat Thumbanthu) ~\rightmark ~ $\big\vert$ \thepage}}
+\fancyhead[RE, LO, C]{}
+
+% Indices
+\usepackage{imakeidx}
+\makeindex
+
+% Packages
+\usepackage[dvipsnames]{xcolor}
+\usepackage{caption, subcaption, graphicx, pdfpages, float, wrapfig}
+\usepackage[inkscapeversion = 1, inkscapelatex = true]{svg}
+\svgpath{{diagrams/}}
+\graphicspath{{diagrams/}}
+\usepackage[inline]{enumitem}
+\usepackage{csquotes}
+
+\usepackage{multicol}
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{lightgray}}
+
+% Styling Figures
+\DeclareCaptionLabelSeparator{pipe}{ $\vert$ }
+\captionsetup{
+    labelfont = {bf},
+    font = {small, sc},
+    width = 0.6\textwidth,
+    labelsep = pipe,
+    figurename = \textbf{Fig. }
+}
+
+% Styling Titles
+\renewcommand{\partnamefont}{\LARGE\bfseries\scshape\centering}
+\renewcommand{\partnumfont}{\LARGE\bfseries\scshape\centering\MakeUppercase}
+\renewcommand{\midpartskip}{\par\rule{1in}{0.5pt}\vspace{1em}\par}
+\renewcommand{\printparttitle}{\HUGE\bfseries\scshape\centering}
+\renewcommand{\afterpartskip}{\relax}
+\chapterstyle{veelo}
+    \renewcommand*{\printchapternum}{%
+    \makebox[0pt][l]{%
+    \hspace{.8em}%
+    \resizebox{!}{\beforechapskip}%
+    {\chapnumfont \thechapter}%
+    \hspace{.8em}%
+    \rule{2\midchapskip}{\beforechapskip}%
+    }%
+}
+
+% Hyperlinks
+\usepackage[colorlinks, linkcolor = blue]{hyperref}
+\usepackage{cleveref}
+
+% Definition/Theorems, and Examples
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems, breakable}
+\newtcbtheorem[auto counter, crefname = {theorem}{theorems}, Crefname = {Theroem}{Theorems}]{thm}{Theorem}{
+    sharp corners, colback = lightgray!40, breakable
+}{thm}
+\newtcbtheorem[auto counter, crefname = {axiom}{axioms}, Crefname = {Axiom}{Axioms}]{axiom}{Axiom}{
+    sharp corners, colback = lightgray!40, breakable
+}{axiom}
+\newtcbtheorem[auto counter, crefname = {definition}{definition}, Crefname = {Definition}{Definition}]{df}{Definition}{
+    sharp corners, colback = lightgray!40, colframe = darkgray, breakable
+}{df}
+\newtcbtheorem[auto counter, crefname = {lemma}{lemma}, Crefname = {Lemma}{Lemma}]{lemma}{Lemma}{
+    sharp corners,
+}{lemma}
+\newtcbtheorem[auto counter, number within = section]{exmp}{Example}{
+    colback = lightgray!40, colframe = darkgray, breakable
+}{exmp}
+\newtcbtheorem[auto counter, number within = chapter, crefname = {remarks of chapter }{remarks of chapter }, Crefname = {Remarks}{Remarks}]{remark}{Remarks on chapter }{
+    colback = lightgray!10, colframe = black, breakable
+}{remark}
+% Proofs
+\usepackage{amsthm}
+
+% Conclusions
+\newcommand{\conclusion}{\section{Conclusion for Chapter \thechapter}}
+\newcommand{\formula}{\section{Formula from Chapter \thechapter}}
+\newcommand{\prelude}[1]{
+    \chapter*{Prelude: #1}
+    \addcontentsline{toc}{chapter}{Prelude: #1}
+}
+\newcommand{\chapterexercises}{\section{Exercises for Chapter \thechapter}}
+
+%%% Notation Commands
+
+\usepackage[]{siunitx}
+\usepackage{physics}
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+% Geometry
+\let\line\overline
+% Mathematical constants
+\newcommand{\e}{\symrm{e}}
+\newcommand{\im}{\symrm{i}}
+\newcommand{\cpi}{\symrm{\pi}}
+\DeclareMathOperator*{\ssum}{\symrm{\Sigma}}
+\DeclareMathOperator*{\Proj}{\symrm{Proj}}
+\DeclareMathOperator*{\fgamma}{\symrm{\Gamma}}
+% Vector notations
+\newcommand{\vv}[1]{\pmb{\symrm{#1}}}
+\newcommand{\conj}{^{\ast}}
+\newcommand{\dagr}{^{\dag}}
+\newcommand{\trnsp}{^{\intercal}}
+\newcommand{\iden}{\symbb{I}}
+\renewcommand\vdot\cdot
+% e Unit vectors
+\newcommand{\uv}[1]{\hat{\vv{e}}_{#1}}
+% Kronecker delta and Dirac's delta function
+\newcommand{\kdel}[1]{\symrm{\delta}_{#1}}
+\newcommand{\ddel}{\symrm{\delta}}
+% Discrete differences
+\newcommand{\Dd}[1]{\symrm{\Delta}{#1}}
+% Limit arrows
+\newcommand{\appr}{\rightarrow}
+% Physics quantities symbols
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\haml}{\mathcal{H}}
+\newcommand{\hilb}{\mathcal{E}}
+% Path integral measures
+\newcommand{\pintm}[1]{\mathcal{D}[#1]}
+
+% Unit vectors i j k
+\newcommand{\ihat}{\hat{\i}}
+\newcommand{\jhat}{\hat{\j}}
+\newcommand{\khat}{\hat{k}}
+% Tensor products
+\newcommand{\tensor}{\otimes}
+% And, and or, in math expressions
+\newcommand{\mathand}{\quad\textrm{and,}\quad}
+\newcommand{\mathor}{\quad\textrm{or,}\quad}
+
+% Set theory notations
+\NewDocumentCommand{\comp}{}{^\complement}
+
+\newcommand{\prerequisites}[1]{\textbf{Prerequisites:}~\emph{#1}}
+
+% Bibliographies
+\usepackage[
+    backend = biber,
+    style = phys,
+    sorting = anyvt
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+% TikZ
+\usepackage{tikz, pgfplots, tikz-3dplot}
+\pgfplotsset{compat = 1.18}
+
+\usetikzlibrary{external}
+\tikzexternalize[prefix = tikz/]
+
+\usetikzlibrary{calc}
+\usetikzlibrary{angles, quotes}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.pathreplacing, calligraphy}
+\usetikzlibrary{3d}
+
+\tikzstyle{brace} = [decorate, decoration = {brace, amplitude = 5pt, raise = 2pt}]
+\tikzstyle{mirrored brace} = [decorate, decoration = {brace, amplitude = 3pt, raise = 2pt, mirror}]
+\tikzstyle{unit} = [ultra thick, blue, -stealth]
+\tikzstyle{axis} = [thick, -stealth]
+\tikzstyle{vector} = [-latex]
+\tikzstyle{line} = [latex-latex]
+
+\begin{document}
+
+\title{The study of the dynamics of quantum bipartite entangled systems using Feynman path integrals}
+\author{Puripat Thumbanthu \\ Advisor: Assoc. Prof. Ekapong Hirunsirisawat, Dr. Tanapat Deesuwan}
+\date{May 16, 2024}
+
+\maketitle
+
+\tableofcontents*
+
+\include{chapters/gaussian}
+\include{chapters/perturbationseries}
+\include{chapters/schrodingereq}
+
+\end{document}
