@@ -6,7 +6,7 @@
 
 The propagator for a single particle system is used to find the probability distribution $\tilde{P}(x)$ of a state at anytime, i.e., for a state $\ket{\psi(t_0)}$,
 \begin{equation}
-    \tilde{P}(q_F, t_F) = \braket{q_F}{\psi(t_F)} = \int\dd{q_0}K(q_0, \Dd{t})\psi(q_0, t_0).
+    \tilde{P}(q_F, t_F) = \braket{q_F}{\psi(t_F)} = \int(q_0, \Dd{t})\psi(q_0, t_0)\dd{q_0}K.
 \end{equation}
 When taken the modulus squared, $|\tilde{P}(q_F, t_F)|^2$, or just $P(q_F, t_F)$, represents the probability of finding that particle at the point $(q_F, t_F)$ in spacetime.
 
@@ -14,7 +14,7 @@ We shall then extend this idea to describe a two particle system. Let there be a
 \begin{equation}
     \ket{\eta(t_0)} = \ket{\psi(t_0)} \tensor \ket{\phi(t_0)}.
 \end{equation}
-If the subsystem of $\ket{\eta}$ is non interacting, the Hamiltonian must be completely separable, which also implies that the time evolution operator $\hat{U}$ is also separable. Consider $\braket{q_F, q_F'}{\eta(t_F)}$ where the unprimed $q$ belongs to the position in the Hilbert space of particle one, and the primed $q$'s, in Hilbert space of particle two.
+If the subsystem of $\ket{\eta}$ is non-interacting, the Hamiltonian must be completely separable, which also implies that the time evolution operator $\hat{U}$ is also separable. Consider $\braket{q_F, q_F'}{\eta(t_F)}$ where the unprimed $q$ belongs to the position in the Hilbert space of particle one, and the primed $q$'s, in Hilbert space of particle two.
 \begin{align*}
     \braket{q_F, q_F'}{\eta(t_F)} &= \bra{q_F, q_F'}\left(\ket{\psi_i(t_F)}\ket{\phi_i(t_F)}\right) \\
     &= \psi_i(q_F, t_F)\phi_i(q_F', t_F') \\
@@ -78,13 +78,14 @@ where $K(j, k) = K(q_j, t_j; q_k, t_k)$. To apply it with two particles, we exte
 \begin{equation}
     K_n(F, 0; F', 0') = \left(-\im\right)^n\idotsint K_0(F, n)K_0(F', n')\left[\prod_{i = 1}^nV(i)K(i, i - 1)K(i', i - 1')\dd{q_i}\dd{q_i'}\right]\dd{t}. \label{eq:generaltwoparticleperturbation}
 \end{equation}
-For some potential, it is possible to evaluate this series term by term analytically using the Meijer's $G$ function.
+where $K = \ssum K_n$. For some potential, it is possible to evaluate this series term by term analytically using the Meijer's $G$ function.
 
 \section{The spring system}
 
 The spring potential is given by $V(q, q') = (q - q')^2.$
 
 \subsection{First order perturbation term}
+\label{sec:spring_1storder}
 
 From \cref{eq:generaltwoparticleperturbation}, and setting $t_1 = t, t_0 = 0$
 \begin{align}
@@ -235,10 +236,10 @@ The second order perturbation term, $K_2$ is
         \idotsint K_0(q_F, q_2; t_F - t_2)K_0(q_F', q_2'; t_F - t_2)K_0(q_2, q_1; t_2 - t_1)K_0(q_2, q_1; t_2 - t_1) \\ \times K_0(q_1, q_0; t_1 - t_0)K_0(q_1, q_0; t_1 - t_0)(q_2 - q_2')^2(q_1 - q_1')^2\dd{q_1}\dd{q_1'}\dd{t_1}\dd{q_2}\dd{q_2'}\dd{t_2}
     \end{multlined} \\
     &= \begin{multlined}[t]
-        \int_{t_1}^{t_F}\int_{t_0}^{t_F}\left[\idotsint K_0(q_F, q_2; t_F - t_2)K_0(q_F', q_2'; t_F - t_2)K_0(q_2, q_1; t_2 - t_1)\right. \\ \times K_0(q_2, q_1; t_2 - t_1)K_0(q_1, q_0; t_1 - t_0)K_0(q_1, q_0; t_1 - t_0) \left(\vphantom{\left(q_{2}^{\prime}\right)^{2}} q_{1}^{2} q_{2}^{2} - 2 q_{1}^{2} q_{2} q_{2}^{\prime} \right.\\ + q_{1}^{2} \left(q_{2}^{\prime}\right)^{2} - 2 q_{1} q_{2}^{2} q_{1}^{\prime} + 4 q_{1} q_{2} q_{1}^{\prime} q_{2}^{\prime} - 2 q_{1} q_{1}^{\prime} \left(q_{2}^{\prime}\right)^{2} + q_{2}^{2} \left(q_{1}^{\prime}\right)^{2} \\ \left.\left. - 2 q_{2} \left(q_{1}^{\prime}\right)^{2} q_{2}^{\prime} + \left(q_{1}^{\prime}\right)^{2} \left(q_{2}^{\prime}\right)^{2} \right) \dd{q_1}\dd{q_1'}\dd{q_2}\dd{q_2'}\dd{t_1}\dd{t_2} \vphantom{\idotsint}\right]
+        \int_{t_1}^{t_F}\int_{t_0}^{t_F}\left[\idotsint K_0(q_F, q_2; t_F - t_2)K_0(q_F', q_2'; t_F - t_2)K_0(q_2, q_1; t_2 - t_1)\right. \\ \times K_0(q_2, q_1; t_2 - t_1)K_0(q_1, q_0; t_1 - t_0)K_0(q_1, q_0; t_1 - t_0) \left(\vphantom{\left(q_{2}^{\prime}\right)^{2}} q_{1}^{2} q_{2}^{2} - 2 q_{1}^{2} q_{2} q_{2}^{\prime} \right.\\ + q_{1}^{2} \left(q_{2}^{\prime}\right)^{2} - 2 q_{1} q_{2}^{2} q_{1}^{\prime} + 4 q_{1} q_{2} q_{1}^{\prime} q_{2}^{\prime} - 2 q_{1} q_{1}^{\prime} \left(q_{2}^{\prime}\right)^{2} + q_{2}^{2} \left(q_{1}^{\prime}\right)^{2} \\ \left.\left. - 2 q_{2} \left(q_{1}^{\prime}\right)^{2} q_{2}^{\prime} + \left(q_{1}^{\prime}\right)^{2} \left(q_{2}^{\prime}\right)^{2} \right) \dd{q_1}\dd{q_1'}\dd{q_2}\dd{q_2'} \vphantom{\idotsint}\right]\dd{t_1}\dd{t_2}
     \end{multlined}
 \end{align}
-The integral once again can be broken into nine integrals that must be integrated w.r.t. time twice later on. All those nine integrals have a product of propagator as a multiplier. Therefore, we shall evaluate those first:
+The integral once again can be broken into nine integrals that must be integrated w.r.t. time twice later on. All those nine integrals have a product of propagator as a multiplier. We shall evaluate those first, separating the primed and unprimed variables.
 \begin{align}
     &\begin{multlined}[t]
         K_0(q_F, q_2; t_F - t_2)K_0(q_F', q_2'; t_F - t_2)K_0(q_2, q_1; t_2 - t_1)K_0(q_2, q_1; t_2 - t_1)K_0(q_1, q_0; t_1 - t_0) \\ \times K_0(q_1, q_0; t_1 - t_0)
@@ -250,6 +251,26 @@ The integral once again can be broken into nine integrals that must be integrate
 
 \subsection{The joint probability distribution}
 
-\section{The delta potential collision system}
+\section{The delta function collision problem}
+
+The potential for the delta function collision problem is
+\begin{equation}
+    V = V_0\ddel(q - q')
+\end{equation}
+where $V_0$ is the strength of the delta function, and is generally considered to be negative.
+
+\subsection{First order perturbation term}
+
+We evaluate the perturbation term similarly to how we did it in \cref{sec:spring_1storder}, starting with the form:
+\begin{align}
+    &K_1(F, 0; F', 0) \\
+    &= -\im\int_0^{t_F}\left[\iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)V_0\ddel(q_1 - q_1')\dd{q_1}\dd{q_1'}\right]\dd{t}. \nonumber \\
+    &= -\im V_0\int_0^{t_F}\left[\iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)\ddel(q_1 - q_1')\dd{q_1}\dd{q_1'}\right]\dd{t} \nonumber
+\end{align}
+Let $I_1$ represents the integral in the square bracket; thus, $K_1 = -\im V_0\int_{0}^{t_F}I_1\dd{t}$. Then,
+\begin{align}
+    I_1 &= \iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)\ddel(q_1 - q_1')\dd{q_1}\dd{q_1'} \\
+    &= \int K_0(q_F, q_1'; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1', q_0; t)K_0(q_1', q_0'; t)\dd{q_1'}
+\end{align}
 
 \section{The coulomb problem}

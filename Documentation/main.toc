@@ -1,18 +1,19 @@
 \changetocdepth {2}
-\contentsline {chapter}{\chapternumberline {1}Generalization of the Gaussian integrals}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Preliminary form}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Evaluation}{2}{section.1.2}%
-\contentsline {paragraph}{Comment on the generalized Gaussian integral}{4}{section*.2}%
-\contentsline {section}{\numberline {1.3}Tables of Gaussian integrals with varying orders}{4}{section.1.3}%
-\contentsline {chapter}{\chapternumberline {2}Propagator and joint probability distribution}{6}{chapter.2}%
-\contentsline {section}{\numberline {2.1}General theory for the propagator of two particles}{6}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Non-interacting systems}{6}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Interacting systems}{7}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Form of the two particle perturbation series}{8}{section.2.2}%
-\contentsline {section}{\numberline {2.3}The spring system}{8}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}First order perturbation term}{9}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Second order perturbation term}{12}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}The joint probability distribution}{13}{subsection.2.3.3}%
-\contentsline {section}{\numberline {2.4}The delta potential collision system}{13}{section.2.4}%
-\contentsline {section}{\numberline {2.5}The coulomb problem}{13}{section.2.5}%
-\contentsline {chapter}{\chapternumberline {3}The Schr\"odinger's equation for two particles}{14}{chapter.3}%
+\contentsline {chapter}{\chapternumberline {1}Generalization of the Gaussian integrals}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Preliminary form}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Evaluation}{4}{section.1.2}%
+\contentsline {paragraph}{Comment on the generalized Gaussian integral}{6}{section*.2}%
+\contentsline {section}{\numberline {1.3}Tables of Gaussian integrals with varying orders}{6}{section.1.3}%
+\contentsline {chapter}{\chapternumberline {2}Propagator and joint probability distribution}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}General theory for the propagator of two particles}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Non-interacting systems}{8}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Interacting systems}{9}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Form of the two particle perturbation series}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}The spring system}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}First order perturbation term}{11}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Second order perturbation term}{14}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}The joint probability distribution}{15}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}The delta function collision problem}{15}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}First order perturbation term}{15}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}The coulomb problem}{15}{section.2.5}%
+\contentsline {chapter}{\chapternumberline {3}The Schr\"odinger's equation for two particles}{16}{chapter.3}%

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Fedora 40) (preloaded format=xelatex 2024.6.27)  27 JUN 2024 23:00
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Fedora 40) (preloaded format=xelatex 2024.6.27)  29 JUN 2024 16:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1871,19 +1871,19 @@ LaTeX Font Info:    Font shape `TU/Concrete-Math.otf(3)/m/n' will be
 (Font)              scaled to size 6.32759pt on input line 2.
 ) [1
 
-]
+] [2]
 \openout2 = `chapters/gaussian.aux'.
 
- (./chapters/gaussian.tex [2
+ (./chapters/gaussian.tex [3
 
 
-]
+] [4]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 36.
 
-[3]
+[5]
 
 Package fancyhdr Warning: \headheight is too small (24.90704pt): 
 (fancyhdr)                Make it at least 30.2939pt, for example:
@@ -1891,23 +1891,7 @@ Package fancyhdr Warning: \headheight is too small (24.90704pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-5.38686pt}.
 
-[4])
-
-Package fancyhdr Warning: \headheight is too small (24.90704pt): 
-(fancyhdr)                Make it at least 26.67201pt, for example:
-(fancyhdr)                \setlength{\headheight}{26.67201pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.76497pt}.
-
-[5]
-\openout2 = `chapters/perturbationseries.aux'.
-
- (./chapters/perturbationseries.tex [6
-
-
-
-
-]
+[6])
 
 Package fancyhdr Warning: \headheight is too small (24.90704pt): 
 (fancyhdr)                Make it at least 26.67201pt, for example:
@@ -1916,14 +1900,22 @@ Package fancyhdr Warning: \headheight is too small (24.90704pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.76497pt}.
 
 [7]
+\openout2 = `chapters/perturbationseries.aux'.
+
+ (./chapters/perturbationseries.tex [8
+
+
+
+
+]
 
 Package fancyhdr Warning: \headheight is too small (24.90704pt): 
-(fancyhdr)                Make it at least 30.2939pt, for example:
-(fancyhdr)                \setlength{\headheight}{30.2939pt}.
+(fancyhdr)                Make it at least 26.67201pt, for example:
+(fancyhdr)                \setlength{\headheight}{26.67201pt}.
 (fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-5.38686pt}.
+(fancyhdr)                \addtolength{\topmargin}{-1.76497pt}.
 
-[8] [9]
+[9]
 
 Package fancyhdr Warning: \headheight is too small (24.90704pt): 
 (fancyhdr)                Make it at least 30.2939pt, for example:
@@ -1939,7 +1931,15 @@ Package fancyhdr Warning: \headheight is too small (24.90704pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-5.38686pt}.
 
-[12])
+[12] [13]
+
+Package fancyhdr Warning: \headheight is too small (24.90704pt): 
+(fancyhdr)                Make it at least 30.2939pt, for example:
+(fancyhdr)                \setlength{\headheight}{30.2939pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-5.38686pt}.
+
+[14])
 
 Package fancyhdr Warning: \headheight is too small (24.90704pt): 
 (fancyhdr)                Make it at least 26.67201pt, for example:
@@ -1947,10 +1947,10 @@ Package fancyhdr Warning: \headheight is too small (24.90704pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.76497pt}.
 
-[13]
+[15]
 \openout2 = `chapters/schrodingereq.aux'.
 
- (./chapters/schrodingereq.tex) [14
+ (./chapters/schrodingereq.tex) [16
 
 
 
@@ -1961,18 +1961,18 @@ Package fancyhdr Warning: \headheight is too small (24.90704pt):
 
  (./main.aux (./chapters/gaussian.aux) (./chapters/perturbationseries.aux) (./chapters/schrodingereq.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 186A9FA26D1798873F56EC8A5FA30316;3552.
+(rerunfilecheck)             Checksum: D858F0B383207728F9DA08EB20B8C684;3768.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 63053 strings out of 476696
- 1448832 string characters out of 5806955
- 2528822 words of memory out of 6000000
- 82442 multiletter control sequences out of 15000+600000
+ 63056 strings out of 476696
+ 1448892 string characters out of 5806955
+ 2529205 words of memory out of 6000000
+ 82445 multiletter control sequences out of 15000+600000
  516321 words of font info for 81 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,20n,120p,1219b,972s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (14 pages, 281220 bytes).
+Output written on main.xdv (16 pages, 296696 bytes).

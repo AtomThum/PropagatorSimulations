@@ -1,24 +1,24 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 1719504003.61397 0
+["biber main"] 0 "main.bcf" "main.bbl" "main" 1719651823.21919 0
   "bibliography.bib" 0 -1 0 ""
   "main.bcf" 0 -1 0 "xelatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["makeindex main.idx"] 1719503802.87965 "main.idx" "main.ind" "main" 1719504003.61378 0
-  "main.idx" 1719504001.31845 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+["makeindex main.idx"] 1719651715.21303 "main.idx" "main.ind" "main" 1719651823.2191 0
+  "main.idx" 1719651821.49803 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
   (generated)
   "main.ilg"
   "main.ind"
   (rewritten before read)
-["xdvipdfmx"] 1719504003.38065 "main.xdv" "main.pdf" "main" 1719504003.6181 0
-  "main.xdv" 1719504003.12547 281220 a7588032f5465dc8abc757c80f419ef9 "xelatex"
+["xdvipdfmx"] 1719651823.07267 "main.xdv" "main.pdf" "main" 1719651823.22245 0
+  "main.xdv" 1719651822.85404 296696 830f19a228d73626bf74d3d3b03fffac "xelatex"
   (generated)
   "main.pdf"
   (rewritten before read)
-["xelatex"] 1719504000.57135 "/home/puripat/Documents/Workspace/PropagatorSimulations/Documentation/main.tex" "main.xdv" "main" 1719504003.61412 0
-  "/dev/null" 1719493596.58158 0 d41d8cd98f00b204e9800998ecf8427e ""
+["xelatex"] 1719651820.9593 "/home/puripat/Documents/Workspace/PropagatorSimulations/Documentation/main.tex" "main.xdv" "main" 1719651823.21926 0
+  "/dev/null" 1719643235.57445 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/home/puripat/Documents/Workspace/PropagatorSimulations/Documentation/main.tex" 1719504000.42645 6740 f616a751a521d59a1f378926880829e3 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -288,19 +288,19 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1655411236 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1714953600 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1719466892 11130201 3bb11807045ecc9ea63ab85698951699 ""
-  "chapters/gaussian.aux" 1719504002.74246 6918 bc892d997de7d2042acaf810de888a07 "xelatex"
+  "chapters/gaussian.aux" 1719651822.58604 6918 4e19aab46bc5b5d97538c2a93d6013f7 "xelatex"
   "chapters/gaussian.tex" 1719456872.83519 6755 799855fcee360b2aca4522fe129e3941 ""
-  "chapters/perturbationseries.aux" 1719504003.10847 9355 d48fca398d016a7b7986953236055370 "xelatex"
-  "chapters/perturbationseries.tex" 1719503809.45205 19785 26e1fb26a398348c5dbee24d4598f0f7 ""
-  "chapters/schrodingereq.aux" 1719504003.11647 5779 268e9911944db25624a6adbe3d27f7ba "xelatex"
+  "chapters/perturbationseries.aux" 1719651822.84304 9738 c975c1654bde92e8c2fefc236268ccc9 "xelatex"
+  "chapters/perturbationseries.tex" 1719651818.691 21026 762763a2fea9f22021c98c64899156df ""
+  "chapters/schrodingereq.aux" 1719651822.84804 5779 4957fd559e3bd3126786ab82ffeb8474 "xelatex"
   "chapters/schrodingereq.tex" 1719458458.5293 56 88638c83c56a483fdd6274dd17e15cf7 ""
-  "main.aux" 1719504003.11747 898 7673de1b8f2a10c2e9c06bf9a521792c "xelatex"
+  "main.aux" 1719651822.84804 898 ee29455a13c7f5c635b7fe941c2de1ba "xelatex"
   "main.bbl" 0 -1 0 "biber main"
-  "main.ind" 1719503802.958 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
-  "main.out" 1719504003.12047 3552 186a9fa26d1798873f56ec8a5fa30316 "xelatex"
-  "main.run.xml" 1719504003.12447 2467 9fda0a3753f29131da8b9001aa90397b "xelatex"
+  "main.ind" 1719651715.26898 0 d41d8cd98f00b204e9800998ecf8427e "makeindex main.idx"
+  "main.out" 1719651822.85004 3768 d858f0b383207728f9da08eb20b8c684 "xelatex"
+  "main.run.xml" 1719651822.85404 2467 9fda0a3753f29131da8b9001aa90397b "xelatex"
   "main.tex" 1719504000.42645 6740 f616a751a521d59a1f378926880829e3 ""
-  "main.toc" 1719504003.12447 1638 24746dda22c8c873e62e34166564a0a5 "xelatex"
+  "main.toc" 1719651822.85404 1741 045be8c159e41429a51c41fcd204b92a "xelatex"
   (generated)
   "chapters/gaussian.aux"
   "chapters/perturbationseries.aux"
