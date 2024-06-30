@@ -13,6 +13,7 @@
     BoldItalicFont = *-BoldItalic,
     Ligatures = {TeX, Common}
 ]
+\setmonofont[Scale = MatchLowercase]{Iosevka Custom}
 \defaultfontfeatures{Mapping = tex-text, Scale = MatchLowercase}
 \usepackage{mathtools}
 \usepackage[math-style = TeX, mathrm = sym, warnings-off = {mathtools-colon}]{unicode-math}
@@ -27,7 +28,8 @@
 \settocdepth{subsection}
 \setlrmarginsandblock{4cm}{1cm}{*}
 \setulmarginsandblock{3cm}{2cm}{*}
-\setlength{\headheight}{24.90704pt}
+\setlength{\headheight}{20pt}
+\addtolength{\topmargin}{-10pt}
 \setlength{\parindent}{1.5cm}
 \setlength{\parskip}{0.3em}
 \setlength{\beforechapskip}{20pt}
@@ -55,11 +57,19 @@
 \svgpath{{diagrams/}}
 \graphicspath{{diagrams/}}
 \usepackage[inline]{enumitem}
-\usepackage{csquotes}
-
 \usepackage{multicol}
 \setlength{\columnseprule}{1pt}
 \def\columnseprulecolor{\color{lightgray}}
+\usepackage{minted}
+\setminted{
+    frame = lines,
+    bgcolor = lightgray,
+    linenos,
+    breaklines,
+    style = algol_nu
+}
+
+\usepackage{csquotes}
 
 % Styling Figures
 \DeclareCaptionLabelSeparator{pipe}{ $\vert$ }
@@ -218,6 +228,7 @@
 
 \include{chapters/gaussian}
 \include{chapters/perturbationseries}
+\include{chapters/implementation}
 \include{chapters/schrodingereq}
 
 \end{document}
