@@ -1,4 +1,4 @@
-\chapter{Generalization of the Gaussian integrals}
+\chapter{The generalized Gaussian integrals}
 
 \section{Preliminary form}
 
@@ -77,6 +77,8 @@ As far as I know, this equation cannot be simplified further.
     \int x^n\exp[-ax^2 - bx - c]\dd{x} \\= \frac{e^{-c}}{2\sqrt{\cpi}ab}\left[- \frac{2^{n + 1}a}{b^n} {G_{2, 1}^{1, 2}\left(\begin{matrix} \frac{1 - n}{2}, - \frac{n}{2}  \\0 \end{matrix} \middle| {\frac{4 a e^{- 2 i \pi}}{b^{2}}} \right)} + a^{\frac{1 - n}{2}}b {G_{1, 2}^{2, 1}\left(\begin{matrix} \frac{1 - n}{2}\\0, \frac{1}{2}\end{matrix} \middle| {\frac{b^{2}}{4 a}} \right)}\right]
 \end{multline}
 However, this form doesn't seem to be very helpful when we try to evaluate the polynomial part of the Gaussian integral because of the nature of the Meijer's $G$ function that's defined with integral of products.
+
+Originally, I was going to evaluate everything using \texttt{SymPy}, and not really care about anything else. However, I came to realize that \texttt{SymPy} doesn't bother integrating any Gaussian integrals that have complex number components. My own implementation will be written in \cref{sec:implementation_of_simulation} 
 
 \section{Tables of Gaussian integrals with varying orders}
 \label{sec:table_of_gaussian_integrals}

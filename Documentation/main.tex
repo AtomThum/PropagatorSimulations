@@ -4,16 +4,35 @@
 
 % Fonts
 \usepackage[no-math]{fontspec}
-\setmainfont{ZillaSlab}[
+% \setmainfont{ZillaSlab}[
+%     Path = fonts/,
+%     Extension = .ttf,
+%     UprightFont = *-Regular,
+%     ItalicFont = *-Italic,
+%     BoldFont = *-Bold,
+%     BoldItalicFont = *-BoldItalic,
+%     Ligatures = {TeX, Common}
+% ]
+\setmainfont{IosevkaCustom}[
     Path = fonts/,
     Extension = .ttf,
-    UprightFont = *-Regular,
-    ItalicFont = *-Italic,
-    BoldFont = *-Bold,
-    BoldItalicFont = *-BoldItalic,
-    Ligatures = {TeX, Common}
+    UprightFont = *-CondensedLight,
+    ItalicFont = *-CondensedLightItalic,
+    BoldFont = *-CondensedHeavy,
+    BoldItalicFont = *-CondensedHeavyItalic,
+    Ligatures = {TeX, Common},
+    Scale = 0.9
 ]
-\setmonofont[Scale = MatchLowercase]{Iosevka Custom}
+\setmonofont[Scale = MatchLowercase]{IosevkaCustom}[
+    Path = fonts/,
+    Extension = .ttf,
+    UprightFont = *-CondensedMedium,
+    ItalicFont = *-CondensedMediumItalic,
+    BoldFont = *-CondensedHeavy,
+    BoldItalicFont = *-CondensedHeavyItalic,
+    Ligatures = {TeX, Common},
+    Scale = 0.9
+]
 \defaultfontfeatures{Mapping = tex-text, Scale = MatchLowercase}
 \usepackage{mathtools}
 \usepackage[math-style = TeX, mathrm = sym, warnings-off = {mathtools-colon}]{unicode-math}
@@ -230,5 +249,9 @@
 \include{chapters/perturbationseries}
 \include{chapters/implementation}
 \include{chapters/schrodingereq}
+
+\appendix
+
+\include{appendices/sympycodebase}
 
 \end{document}

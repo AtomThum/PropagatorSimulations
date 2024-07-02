@@ -1,0 +1,35 @@
+\chapter{Integrals evaluation code}
+\label{appendix:sympy_code_base}
+
+All of these codes that I've written are in the \texttt{Julia} language, which I've imported three packages: \texttt{Sympy}, \texttt{OffsetArrays}, and \texttt{Plots; plotlyjs()}
+
+\section{Polynomial extraction}
+
+Since we're going to be doing a lot of polynomials rearranging, I've implemented the polynomial extraction function as follows:
+\begin{minted}{julia}
+function extractPolynomial(expr, arg)
+    expr isa Sym ? nothing : expr = sympify(1)
+    expr = expand(expr)
+    polyDegree = Int(degree(expr, arg))
+    extractOneSet = []
+    for i in 0:polyDegree
+        temp = expr.coeff(arg, i)
+        push!(extractOneSet, temp)
+    end
+    polyExt = OffsetVector(extractOneSet, 0:polyDegree)
+    return polyExt
+end
+\end{minted}
+This function accepts two arguments: \texttt{expr}, which is the expression you want to extract, and \texttt{arg}, the variable that you extract with respect to. For example, inputting $ax^2 + bx + c,~x$ would give out
+\begin{equation}
+    \begin{bmatrix}
+        a \\ b \\ c
+    \end{bmatrix},
+\end{equation}
+which is a zero index matrix.
+
+\section{Code for the spring problem}
+
+\subsection{First order perturbation}
+
+Solving

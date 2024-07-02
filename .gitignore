@@ -1,6 +1,7 @@
 **.aux
 **.auxlock
 **.bcf
+**.bcf-SAVE-ERROR
 **.fdb_latexmk
 **.fls
 **.idx
@@ -14,6 +15,7 @@
 **.xdv
 **.pygstyle
 **.pygtex
+**.synctex(busy)
 /Documentation/_minted-main
 
 .vscode

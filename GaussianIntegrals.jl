@@ -6,6 +6,8 @@ using Latexify
 @syms a::(real, positive), b::(real, positive), c::(real, positive), n::(real, positive)
 expr = x^n * exp(- a*x^2 - b*x - c)
 
+# The actual Gaussian integral evaluation (From SymPy)
+
 for i in 1:30
     currentExpr = expr.subs(n, i)
     currentExprInt = factor(integrate(currentExpr, (x, -oo, oo))).subs(erf(b/(2*sqrt(a))) + erfc(b/(2*sqrt(a))), 1)
@@ -16,3 +18,5 @@ for i in 1:30
     end
     display(currentExprInt)
 end
+
+# Testing part
