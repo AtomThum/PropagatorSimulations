@@ -32,4 +32,26 @@ which is a zero index matrix.
 
 \subsection{First order perturbation}
 
-Solving
+The first order perturbation uses the following symbols:
+\begin{minted}{julia}
+@syms q0 q1 q2
+@syms m::(real, positive) t::(real, positive)
+q0′, q1′, q2′, qf′, qf = symbols("q_{0}^{\\prime}, q_{1}^{\\prime}, q_{2}^{\\prime}, q_{F}^{\\prime}, q_F")
+t0, t1, t2, tf = symbols("t_0, t_1, t_2, t_F", real = true, positive = true)
+\end{minted}
+
+The following code is used to aid the evaluation of integrals.
+\begin{minted}{julia}
+# Simplifying the product of propagators in eq. 2.25
+idenFunc = IM*m/(2 * (tf - t)) * (qf - q1)^2 + IM*m/(2*t) * (q1 - q0)^2
+
+idenPoly = extractPolynomial(idenFunc, q1)
+idenPolyA = -idenPoly[2]
+idenPolyB = -idenPoly[1]
+idenPolyC = -idenPoly[0]
+
+display(idenPolyA)
+display(idenPolyB)
+display(idenPolyC)
+    
+\end{minted}
