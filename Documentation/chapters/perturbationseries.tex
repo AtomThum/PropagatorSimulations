@@ -132,18 +132,18 @@ in which,
 To summarize,
 \begin{align}
     \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} &= -\frac{b}{2}\sqrt{\frac{\cpi}{a^3}}\times\frac{m}{2\cpi}\sqrt{-\frac{1}{t(t_F - t)}}\times\sqrt{\frac{2\cpi\im t_F}{m}}K_0(q_F, q_0; t_F) \nonumber\\
-    &= -\frac{b}{2}\sqrt{\frac{\cpi}{a^3}} \times \sqrt{\frac{mt_F}{2\cpi\im t(t_F - t)}}K_0(q_F, q_0; t_F) \label{eq:spring_deg1gaussian_form}
+    &= -\frac{b}{2}\sqrt{\frac{\cpi}{a^3}} \times \sqrt{\frac{mt_F}{2\cpi\im t(t_F - t)}}K_0(q_F, q_0; t_F), \label{eq:spring_deg1gaussian_form}
 \end{align}
-and,
+and
 \begin{equation}
-    \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} = \frac{1}{4}\sqrt{\frac{\cpi}{a^5}}(2a + b^2) \times \sqrt{\frac{mt_F}{2\cpi\im t(t_F - t)}}K_0(q_F, q_0; t_F). \label{eq:spring_deg2gaussian_form}
+    \int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} = \frac{1}{4}\sqrt{\frac{\cpi}{a^5}}(2a + b^2) \times \sqrt{\frac{mt_F}{2\cpi\im t(t_F - t)}}K_0(q_F, q_0; t_F). \label{eq:spring_deg2gaussian_form}
 \end{equation}
 
 On the Gaussian integral with degree one,
 \begin{equation}
-    -\frac{b}{2}\sqrt{\frac{\cpi}{a^3}} = \sqrt{\frac{2\cpi t}{mt_F^3}}\frac{\sqrt{-\im(t_F - t)^3}}{\im(t_F - t)} \times \left[q_0(t_F - t) + q_Ft\right]
+    -\frac{b}{2}\sqrt{\frac{\cpi}{a^3}} = \sqrt{\frac{2\cpi t}{mt_F^3}}\frac{\sqrt{-\im(t_F - t)^3}}{\im(t_F - t)} \times \left[q_0(t_F - t) + q_Ft\right];
 \end{equation}
-;thus from \cref{eq:spring_deg1gaussian_form},
+thus from \cref{eq:spring_deg1gaussian_form},
 \begin{align}
     \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t) &= \begin{multlined}[t]
         \sqrt{\frac{2\cpi t}{mt_F^3}}\frac{\sqrt{-\im(t_F - t)^3}}{\im(t_F - t)} \times \left[q_0(t_F - t) + q_Ft\right] \\
@@ -157,10 +157,49 @@ On the Gaussian integral with degree two,
 \end{equation}
 and thus,
 \begin{align}
-    &\int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \\
+    &\int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \\
     &= \sqrt{\frac{mt_F}{2\cpi\im t(t_F - t)}}K_0(q_F, q_0; t_F)  \times -\sqrt{\frac{2\cpi t}{m^3t_F^5}}\frac{\sqrt{\im(t_F - t)^5}}{(t_F - t)^2}\left[m\left(q_0(t_F - t) + q_Ft\right)^2 + \im tt_F(t_F - t)\right] \nonumber\\
-    &= -\frac{1}{mt_F^2}\left[m\left(q_0(t_F - t) + q_Ft\right)^2 + \im tt_F(t_F - t)\right]K_0(q_F, q_0; t_F)
+    &= -\frac{1}{mt_F^2}\left[m\left(q_0(t_F - t) + q_Ft\right)^2 + \im tt_F(t_F - t)\right]K_0(q_F, q_0; t_F).
 \end{align}
+
+We're now in the place to finally construct the first order propagator term for the spring system. Recall that
+\begin{equation}
+    K_1 = -\im\alpha\int_0^{t_F} I\dd{t} = -\im\alpha\left[\int_0^{t_F}I_{P1}\dd{t} + \int_0^{t_F}I_{P2}\dd{t} + 2\int_0^{t_F}I_{P3}\dd{t}\right]
+\end{equation}
+From earlier,
+\begin{gather}
+    \begin{aligned}
+        I_{P1} &= K_0(q_F', q_0'; t_F)\int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \\
+        &= -\frac{1}{mt_F^2}\left[m\left(q_0(t_F - t) + q_Ft\right)^2 + \im tt_F(t_F - t)\right]K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F),
+    \end{aligned}
+    \\
+    \begin{aligned}
+        I_{P2} &= K_0(q_F, q_0; t_F)\int q_1'^2 K_0(q_F', q_1'; t_F - t)K_0(q_1', q_0'; t)\dd{q_1'} \\
+        &= -\frac{1}{mt_F^2}\left[m\left(q_0'(t_F - t) + q_F't\right)^2 + \im tt_F(t_F - t)\right]K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F),
+    \end{aligned}
+    \\
+    \begin{aligned}
+        I_{P3} &= -\frac{1}{t_F}\left[q_0(t_F - t) + q_Ft\right]K_0(q_F, q_0; t_F) \times -\frac{1}{t_F}\left[q_0'(t_F - t) + q_F't\right]K_0(q_F', q_0'; t_F) \\
+        &= \frac{1}{t_F^2}\left[q_0(t_F - t) + q_Ft\right]\left[q_0'(t_F - t) + q_F't\right]K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F).
+    \end{aligned}
+\end{gather}
+Thus,
+\begin{multline}
+    K_1 = -\im\alpha K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \frac{1}{t_F^2} \left[-\frac{1}{m}\int_0^{t_F}m\left(q_0(t_F - t) + q_Ft\right)^2 + \im tt_F(t_F - t)\dd{t} \right. \\
+    -\frac{1}{m}\int_0^{t_F}m\left(q_0'(t_F - t) + q_F't\right)^2 + \im tt_F(t_F - t)\dd{t} \\
+    \left. + \int_0^{t_F}\left[q_0(t_F - t) + q_Ft\right]\left[q_0'(t_F - t) + q_F't\right]\dd{t}\right]
+\end{multline}
+The integrals are then taken out to be evaluated term by term. Since the integrand of these integrals are all polynomials, we can just plug it into \texttt{SymPy.jl}:
+\begin{gather}
+    \int_0^{t_F}m\left(q_0(t_F - t) + q_Ft\right)^2 = \frac{t_F^3}{6}\left(2m(q_0 + q_F)^2 + \im t_F\right) \\
+    \int_0^{t_F}m\left(q_0'(t_F - t) + q_F't\right)^2 = \frac{t_F^3}{6}\left(2m(q_0' + q_F')^2 + \im t_F\right) \\
+    \int_0^{t_F}\left[q_0(t_F - t) + q_Ft\right]\left[q_0'(t_F - t) + q_F't\right]\dd{t} = \frac{t_F^3}{6}\left(2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right)
+\end{gather}
+Therefore, the first order perturbation term of the spring system takes the form
+\begin{multline}
+    K_1(q_F, q_0; q_F', q_0'; t_F) = -\im\frac{\alpha t_F}{6}K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \\
+    \times\left[-2\left(m(q_0 + q_F)^2 + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right].
+\end{multline}
 
 \subsection{Second order perturbation term}
 
