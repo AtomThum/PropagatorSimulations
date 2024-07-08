@@ -18,5 +18,3 @@ for i in 1:5
     end
     display(currentExprInt)
 end
-
-# Testing part

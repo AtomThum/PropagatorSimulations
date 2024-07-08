@@ -1,12 +1,19 @@
 \chapter{Propagator and joint probability distribution}
 
+\section{Initial states of choice}
+
+We're interested in the time evolution of a Gaussian wave packet, mostly due to its mathematical simplicity. A normalized Gaussian wave packet is given by
+\begin{equation}
+    \sqrt{\frac{1}{2\cpi\sigma}}\exp[\im p q - \frac{(q - s)^2}{4\sigma^2}]
+\end{equation} 
+
 \section{General theory for the propagator of two particles}
 
 \subsection{Non-interacting systems}
 
 The propagator for a single particle system is used to find the probability distribution $\tilde{P}(x)$ of a state at anytime, i.e., for a state $\ket{\psi(t_0)}$,
 \begin{equation}
-    \tilde{P}(q_F, t_F) = \braket{q_F}{\psi(t_F)} = \int(q_0, \Dd{t})\psi(q_0, t_0)\dd{q_0}K.
+    \tilde{P}(q_F, t_F) = \braket{q_F}{\psi(t_F)} = \int K(q_f, q_0; \Dd{t})\psi(q_0, t_0)\dd{q_0}.
 \end{equation}
 When taken the modulus squared, $|\tilde{P}(q_F, t_F)|^2$, or just $P(q_F, t_F)$, represents the probability of finding that particle at the point $(q_F, t_F)$ in spacetime.
 
@@ -33,7 +40,6 @@ It can be seen that $\braket{q_F, q_F'}{\eta(t_F)}$ represents the probability d
 \begin{equation}
     K(q_F, t_F; q_0, t_0)K(q_F', t_F';q_0', t_0').
 \end{equation}
-
 
 \subsection{Interacting systems}
 
@@ -68,21 +74,26 @@ Notice that when there is no interaction between the two systems ($V = 0$), the 
 
 There are two common forms of interaction, which is the spring interaction and the coulomb interaction. Both of which includes the term $(q_i - q_i')^2$ in $V(q, q')$, which causes major problems in integration. When expanded, there is a $q_iq_i'$ term that makes the integral inseparable which causes the integral pattern to not repeat; therefore, we resort to perturbation.
 
-\section{Form of the two particle perturbation series}
+\subsection{Form of the two particle perturbation series}
 
 The perturbation series for one particle are already given by Feynman in his path integrals textbook:
 \begin{equation}
     K_n(F, 0) = \left(-\im\right)^n\idotsint K_0(F, n)\prod_{i = 1}^n V(i)K(i, i - 1)\dd{\tau_i}
 \end{equation}
-where $K(j, k) = K(q_j, t_j; q_k, t_k)$. To apply it with two particles, we extend it:
+where $K(j, k) = K(q_j, t_j; q_k, t_k)$ and $K = \ssum_nK_n$. To apply it with two particles, we extend it:
 \begin{equation}
     K_n(F, 0; F', 0') = \left(-\im\right)^n\idotsint K_0(F, n)K_0(F', n')\left[\prod_{i = 1}^nV(i)K(i, i - 1)K(i', i - 1')\dd{q_i}\dd{q_i'}\right]\dd{t}. \label{eq:generaltwoparticleperturbation}
 \end{equation}
-where $K = \ssum K_n$. For some potential, it is possible to evaluate this series term by term analytically using the Meijer's $G$ function.
+Trivially, we can also expand the joint probability distribution in the form of the perturbation series.
+\begin{align}
+    \eta(q_F, q_F'; t_F) &= \int K(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0)\dd{q_0}\dd{q_0'} \\
+    &= \int \sum_n K_n(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0) \dd{q_0}\dd{q_0'} \\
+    &= \sum_n \int K_n(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0) \dd{q_0}\dd{q_0'}
+\end{align}
 
 \section{The spring system}
 
-The spring potential is given by $V(q, q') = \flatfrac{k}{2}(q - q')^2$, which I shall let $\alpha = \flatfrac{k}{2}$ for simplicity sake.
+The spring potential is given by $V(q, q') = \flatfrac{k}{2}(q - q')^2$, which I shall let $\alpha = \flatfrac{k}{2}$ for simplicity’s sake.
 
 \subsection{First order perturbation term}
 \label{sec:spring_1storder}
@@ -201,6 +212,10 @@ Therefore, the first order perturbation term of the spring system takes the form
     \times\left[-2\left(m(q_0 + q_F)^2 + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right].
 \end{multline}
 
+\subsection{Joint probability contribution from the first order perturbation term}
+
+\subsection{Problems with higher order spring perturbation term}
+
 \subsection{Second order perturbation term}
 
 The second order perturbation term, $K_2$ is
@@ -222,8 +237,6 @@ The integral once again can be broken into nine integrals that must be integrate
         \frac{\im m^3}{8\cpi^3(t_F - t_2)(t_2 - t_1)(t_1 - t_0)}\exp \left[\frac{\im m}{2(t_F - t_2)}\left((q_F - q_2)^2 + (q_F' - q_2')^2\right) \right. \\ \left. + \frac{\im m}{2(t_2 - t_1)}\left((q_2 - q_1)^2 + (q_2' - q_1')^2\right) + \frac{\im m}{2(t_1 - t_0)}\left((q_1 - q_0)^2 + (q_1' - q_0')^2\right)\right]
     \end{multlined}
 \end{align}
-
-\subsection{The joint probability distribution}
 
 \section{The delta function collision problem}
 
