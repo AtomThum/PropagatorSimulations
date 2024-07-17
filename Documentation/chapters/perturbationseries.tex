@@ -71,13 +71,13 @@ There are two common forms of interaction, which is the spring interaction and t
 
 The perturbation series for one particle are already given by Feynman in his path integrals textbook:
 \begin{equation}
-    K_n(F, 0) = \left(-\im\right)^n\idotsint K_0(F, n)\prod_{i = 1}^n V(i)K(i, i - 1)\dd{\tau_i}
+    K_n(F, 0) = \left(-\im\right)^n\idotsint K_0(F, n)\prod_{i = 1}^n V(i)K_0(i, i - 1)\dd{\tau_i}
 \end{equation}
-where $K(j, k) = K(q_j, t_j; q_k, t_k)$ and $K = \ssum_nK_n$. To apply it with two particles, we extend it:
+where $K_n$ is the $n$'th order perturbation, $K(j, k) = K(q_j, t_j; q_k, t_k)$, $K = \ssum_nK_n$ and $\dd{\tau_i} = \dd{q_i}\dd{q_i}\dd{t_i}$. To apply it with two particles, we extend it:
 \begin{equation}
-    K_n(F, 0; F', 0') = \left(-\im\right)^n\idotsint K_0(F, n)K_0(F', n')\left[\prod_{i = 1}^nV(i)K(i, i - 1)K(i', i - 1')\dd{q_i}\dd{q_i'}\right]\dd{t}. \label{eq:generaltwoparticleperturbation}
+    K_n(F, 0; F', 0') = \left(-\im\right)^n\idotsint K_0(F, n)K_0(F', n')\left[\prod_{i = 1}^nV(i)K_0(i, i - 1)K_0(i', i' - 1)\dd{q_i}\dd{q_i'}\dd{t_i}\right]. \label{eq:generaltwoparticleperturbation}
 \end{equation}
-Trivially, we can also expand the joint probability distribution in the form of the perturbation series.
+We can also expand the joint probability distribution in the form of the perturbation series.
 \begin{align}
     \eta(q_F, q_F'; t_F) &= \int K(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0)\dd{q_0}\dd{q_0'} \\
     &= \int \sum_n K_n(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0) \dd{q_0}\dd{q_0'} \\
@@ -85,10 +85,11 @@ Trivially, we can also expand the joint probability distribution in the form of 
 \end{align}
 
 \section{Initial states of choice}
+\label{sec:initial_states_of_choice}
 
-We're interested in the time evolution of a Gaussian wave packet, mostly due to its mathematical simplicity. A normalized Gaussian wave packet is given by
+We're interested in the time evolution of a Gaussian wave packet, mostly due to its mathematical simplicity. The normalized state of a Gaussian wave packet is given by
 \begin{equation}
-    \braket{q}{\xi(t_0 = 0)} = \sqrt{\frac{1}{2\cpi\sigma}}\exp[\im p q - \frac{(q - s)^2}{4\sigma^2}]. \label{eq:unentangled_state}
+    \sqrt{\frac{1}{2\cpi\sigma}}\exp[\im p q - \frac{(q - s)^2}{4\sigma^2}]. \label{eq:unentangled_state}
 \end{equation}
 For two separable particles, its joint probability is
 \begin{equation}
@@ -112,7 +113,7 @@ To plot its probability amplitude, we have to take its modulus squared, which eq
 
 \section{The spring system}
 
-The spring potential is given by $V(q, q') = \flatfrac{k}{2}(q - q')^2$, which I shall let $\alpha = \flatfrac{k}{2}$ for simplicity's sake.
+The spring potential is given by $V(q, q') = \frac{k}{2}(q - q')^2$, which I shall let $\alpha = \frac{k}{2}$ for simplicity's sake.
 
 \subsection{First order perturbation term}
 \label{sec:spring_1storder}
@@ -131,9 +132,9 @@ equals $I$; therefore, $K_1 = -\im\alpha\int_0^{t_F} I\dd{t}$.
 
 We then separate $I$ into three integrals:
 \begin{gather}
-    I_{P1} = \int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \int K_0(q_F', q_1'; t_F, t)K_0(q_1', q_0'; t)\dd{q_1'}, \label{eq:spring_IP1}\\
-    I_{P2} = \int K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t) \int q_1'^2K_0(q_F', q_1'; t_F, t)K_0(q_1', q_0'; t)\dd{q_1'}, \label{eq:spring_IP2}\\
-    I_{P3} = \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t) \int q_1'K_0(q_F', q_1'; t_F, t)K_0(q_1', q_0'; t) \dd{q_1'} \label{eq:spring_IP3},
+    I_{P1} = \int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \int K_0(q_F', q_1'; t_F - t)K_0(q_1', q_0'; t)\dd{q_1'}, \label{eq:spring_IP1}\\
+    I_{P2} = \int K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \int q_1'^2K_0(q_F', q_1'; t_F - t)K_0(q_1', q_0'; t)\dd{q_1'}, \label{eq:spring_IP2}\\
+    I_{P3} = \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \int q_1'K_0(q_F', q_1'; t_F - t)K_0(q_1', q_0'; t) \dd{q_1'} \label{eq:spring_IP3},
 \end{gather}
 where $I = I_{P1} + I_{P2} + 2I_{P3}$. The integrals without the factor $q_1$ and $q_1^2$ can be reduced into the kernel for the free particle:
 \begin{gather}
@@ -142,12 +143,12 @@ where $I = I_{P1} + I_{P2} + 2I_{P3}$. The integrals without the factor $q_1$ an
 \end{gather}
 Since $I_{P2}$ can be obtained by switching all the primed variables with the corresponding unprimed in $I_{P1}$, we're left with two family of integrals:
 \begin{equation}
-    \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \mathand \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1}. \label{eq:spring_family_of_integrals}
+    \int q_1K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1} \mathand \int q_1^2K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t)\dd{q_1}. \label{eq:spring_family_of_integrals}
 \end{equation}
 To evaluate these, we first simplify the product of kernel under the assumption that $t_F > t$.
 \begin{align}
     &K_0(q_F, q_1; t_F - t)K_0(q_1, q_0; t) \nonumber\\
-    &= \sqrt{\frac{m}{2\cpi\im(t_F - t)}}\sqrt{\frac{m}{2\cpi\im t}}\exp[-\frac{\im m}{2(t_F - t)}(q_F - q_1)^2 - \frac{\im m}{2t}(q_1 - q_0)^2] \\
+    &= \sqrt{\frac{m}{2\cpi\im(t_F - t)}}\sqrt{\frac{m}{2\cpi\im t}}\exp[\frac{\im m}{2(t_F - t)}(q_F - q_1)^2 + \frac{\im m}{2t}(q_1 - q_0)^2] \\
     &= \frac{m}{2\cpi}\sqrt{-\frac{1}{t(t_F - t)}} \exp[q_1^2\left(\frac{\im m}{2t} + \frac{\im m}{2(t_F - t)}\right) - q_1\left(\frac{\im m q_0}{t} + \frac{\im m q_F}{t_F - t}\right) + \left(\frac{\im m q_0^2}{2t} + \frac{\im m q_F^2}{2(t_F - t)}\right)] \nonumber \\
     &= \frac{m}{2\cpi}\sqrt{-\frac{1}{t(t_F - t)}} \exp[-q_1^2\left(\frac{m t_F}{2\im t(t_F - t)}\right) - q_1(\im m)\left(\frac{q_0}{t} + \frac{q_F}{t_F - t}\right) - \left(\frac{m}{2\im}\right)\left(\frac{q_0^2}{t} + \frac{q_F^2}{t_F - t}\right)] \nonumber
 \end{align}
@@ -228,15 +229,73 @@ The integrals are then taken out to be evaluated term by term. Since the integra
 Therefore, the first order perturbation term of the spring system takes the form
 \begin{multline}
     K_1(q_F, q_0; q_F', q_0'; t_F) = -\im\frac{\alpha t_F}{6}K_0(q_F, q_0; t_F)K_0(q_F', q_0'; t_F) \\
-    \times\left[-2\left(m(q_0 + q_F)^2 + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right].
+    \times\left[-2\left(m(q_0 + q_F)^2 + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right]. \label{eq:spring_first_order_perturbation}
 \end{multline}
 
 \subsection{Joint probability contribution from the first order perturbation term on a separable state}
 
-From the state given in \cref{eq:unentangled_state}, the state at any following time $t_F$ is given by
+As said earlier, we're interested in the time evolution of a Gaussian wave packet earlier, with the initial state of the two particles being
 \begin{equation}
-    \int K_0(q_F, q_F'; q_0, q_0'; t_F)
+    \eta(q_0, q_0; t_0) = \frac{1}{2\cpi\sqrt{\sigma\sigma'}}\exp[\im pq_0 + \im p'q_0' - \frac{(q_0 - s)^2}{4\sigma^2} - \frac{(q_0' - s')^2}{4\sigma'^2}].
 \end{equation}
+We shall set $t_0 = 0$ for simplicity's sake. The state at any following time $t_F$ is then
+\begin{equation}
+    \eta(q_F, q_F'; t_F) = \iint\left(K_0(q_F, q_0; q_F', q_0'; t_F - t_0) + K_1(q_F, q_0; q_F', q_0'; t_F - t_0)\right)\eta(q_0, q_0'; t_0)\dd{q}\dd{q_0'}
+\end{equation}
+Thus, using the first order perturbation term from \cref{eq:spring_first_order_perturbation},
+\begin{align}
+    \eta(q_F, q_F'; t_F) &= \begin{multlined}[t]
+        \frac{1}{2\cpi\sqrt{\sigma\sigma'}}\iint K_0(q_F, q_0; q_F', q_0'; t_F - t_0)\left\{1 - \im\frac{\alpha t_F}{6}\left[-2\left(m(q_0 + q_F)^2 \right.\right.\right.\\
+        \left.\left.\left. + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right]\vphantom{\frac{\alpha t_F}{6}}\right\}
+        \\ \exp[\im pq_0 + \im p'q_0' - \frac{(q_0 - s)^2}{4\sigma^2} - \frac{(q_0' - s')^2}{4\sigma'^2}]\dd{q_0}\dd{q_0'}
+    \end{multlined}
+\end{align}
+In the end, this integral can be evaluated term by term as Gaussian integrals with the same exponential argument.
+\begin{align}
+    &\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2 \\
+    &= -\left(\frac{1}{4\sigma^2} - \frac{\im m}{2t_F}\right)q_0^2 - \left(\frac{\im m q_F}{t_F} - \im p - \frac{s}{2\sigma^2}\right)q_0 - \left(\frac{s^2}{4\sigma^2} - \frac{\im m q_F^2}{2t_F}\right),
+\end{align}
+with
+\begin{equation}
+    a = \frac{1}{4\sigma^2} - \frac{\im m}{2t_F}, \quad b = \frac{\im m q_F}{t_F} - \im p - \frac{s}{2\sigma^2} \mathand \frac{s^2}{4\sigma^2} - \frac{\im m q_F^2}{2t_F}.
+\end{equation}
+From \cref{sec:initial_states_of_choice},
+\begin{equation}
+    \exp[\frac{b^2}{4a} - c] = \exp[\frac{4 \im m p q_{F} σ^{2} - m q_{F}^{2} + 2 m q_{F} s - m s^{2} - 2 \im p^{2} t_{F} σ^{2} - 2 p s t_{F}}{4 m σ^{2} + 2 \im t_{F}}] \equiv \Xi,
+\end{equation}
+and
+\begin{gather}
+    \sqrt{\frac{\cpi}{a}} = 2\sigma\sqrt{\frac{\cpi t_F}{t_F - 2\im m\sigma^2}}, \\
+    -\frac{b}{2}\sqrt{\frac{\cpi}{a^3}} = 2\sigma\sqrt{\frac{\cpi t_F}{(t_F - 2\im m\sigma^2)^3}}\left(-2\im q_F + 2\im p t_F\sigma^2 + st_F\right), \\
+    \frac{1}{4}\sqrt{\frac{\cpi}{a^5}} = 2\sigma\sqrt{\frac{\cpi t_F}{(t_F - 2\im m\sigma^2)^5}}\left(- 4 \im m t_{F} σ^{4} + 2 t_{F}^{2} σ^{2} + \left(- 2 \im m q_{F} σ^{2} + 2 \im p t_{F} σ^{2} + s t_{F}\right)^{2}\right).
+\end{gather}
+
+Now let's consider the integral
+\begin{align}
+    &I_1(p, s, \sigma, m; q_0, n) \\
+    &= \int q_0^n K_0(q_F, q_0; t_F)\exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2}] \dd{q_0} \\
+    &= \sqrt{\frac{m}{2\cpi\im t_F}}\int q_0^n\exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2]\dd{q_0} \\
+    &= \sqrt{\frac{m}{2\cpi\im t_F}}\int q_0^n\exp[-\left(\frac{1}{4\sigma^2} - \frac{\im m}{2t_F}\right)q_0^2 - \left(\frac{\im m q_F}{t_F} - \im p - \frac{s}{2\sigma^2}\right)q_0 - \left(\frac{s^2}{4\sigma^2} - \frac{\im m q_F^2}{2t_F}\right)]\dd{q_0} \nonumber
+\end{align}
+Let's abbreviate $I(q_F, p, s, \sigma, m; q_0, n)$ as $I(n)$ for now. For $n = 0$, $I(0)$ becomes
+\begin{align}
+    &\int K_0(q_F, q_0; t_F)\exp[\im p q_0 - \frac{(q_0 - s)^2}{4\sigma^2}]\dd{q_0} \\
+    &= \sqrt{\frac{m}{2\cpi\im t_F}}\int\exp[-\left(\frac{1}{4\sigma^2} - \frac{\im m}{2t_F}\right)q_0^2 - \left(\frac{\im m q_F}{t_F} - \im p - \frac{s}{2\sigma^2}\right)q_0 - \left(\frac{s^2}{4\sigma^2} - \frac{\im m q_F^2}{2t_F}\right)]\dd{q_0} \\
+    &= \sqrt{\frac{m}{2\cpi\im t_F}}\times 2\sigma\sqrt{\frac{\cpi t_F}{t_F - 2\im m\sigma^2}} \times \Xi \\
+    &= \sigma\Xi\sqrt{\frac{2m}{\im t_F(t_F - 2\im m \sigma^2)}}.
+\end{align}
+For $n = 1$,
+\begin{align}
+    I(1) &= \int q_0 K_0(q_F, q_0; t_F)\exp[\im p q_0 - \frac{(q_0 - s)^2}{4\sigma^2}]\dd{q_0} \\
+    &= \sqrt{\frac{m}{2\cpi\im t_F}} \times 2\sigma\sqrt{\frac{\cpi t_F}{(t_F - 2\im m\sigma^2)^3}}\left(-2\im q_F + 2\im p t_F\sigma^2 + st_F\right) \times \Xi \\
+    &= \sigma\Xi\sqrt{\frac{2m}{\im t_F(t_F - 2\im m\sigma^2)^3}}\times \left(-2\im q_F + 2\im p t_F\sigma^2 + st_F\right)
+\end{align}
+For $n = 2$,
+\begin{align}
+    I(2) &= \int q_0^2 K_0(q_F, q_0; t_F)\exp[\im p q_0 - \frac{(q_0 - s)^2}{4\sigma^2}]\dd{q_0} \\
+    &= \sqrt{\frac{m}{2\cpi\im t_F}} \times 2\sigma\sqrt{\frac{\cpi t_F}{(t_F - 2\im m\sigma^2)^5}}\left(- 4 \im m t_{F} σ^{4} + 2 t_{F}^{2} σ^{2} + \left(- 2 \im m q_{F} σ^{2} + 2 \im p t_{F} σ^{2} + s t_{F}\right)^{2}\right) \times \Xi \nonumber\\
+    &= \sigma\Xi\sqrt{\frac{2m}{\im t_F(t_F - 2\im m\sigma^2)^5}}\left(- 4 \im m t_{F} σ^{4} + 2 t_{F}^{2} σ^{2} + \left(- 2 \im m q_{F} σ^{2} + 2 \im p t_{F} σ^{2} + s t_{F}\right)^{2}\right)
+\end{align}
 
 \subsection{Joint probability contribution from the first order perturbation term on an entangled state}
 
