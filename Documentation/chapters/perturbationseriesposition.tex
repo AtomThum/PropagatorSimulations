@@ -1,4 +1,4 @@
-\chapter{Propagator and joint probability distribution in the position basis}
+\chapter{Path integrals of bipartite systems in the position basis}
 
 \section{General theory for the propagator of two particles}
 
@@ -52,7 +52,7 @@ As seen, the form of transition element is
 The terms in the exponents can be separated due to the vanishing commutator when $\Dd{t} \appr 0$. By separating the terms in the exponents and inserting two complete sets of momentum basis, the equation above turns into
 \begin{align}
     & \frac{1}{(2\cpi)^2} \iint\dd{p}\dd{p'} \mel*{q_j, q_j'}{\exp[-\im\Dd{t}\frac{\hat{p}^2}{2m}]}{p, p'}\mel{p, p'}{\exp[-\im\Dd{t}\frac{\hat{p}'^2}{2m'}]\exp[-\im\Dd{t}V(\hat{q}, \hat{q}', t)]}{q_i, q_i'} \nonumber\\
-    &= \frac{1}{(2\cpi)^2} \iint\dd{p}\dd{p'} \exp[-iu\Dd{t}\left(\frac{p^2}{2m} + \frac{p'^2}{2m'} + V(q_i, q_i, \Dd{t})\right)]\braket{q_j}{p}\braket{q_j'}{p'}\braket{q_i}{p}\conj\braket{q_j'}{p'}\conj \nonumber\\
+    &= \frac{1}{(2\cpi)^2} \iint\dd{p}\dd{p'} \exp[-\im\Dd{t}\left(\frac{p^2}{2m} + \frac{p'^2}{2m'} + V(q_i, q_i, \Dd{t})\right)]\braket*{q_j}{p}\braket*{q_j'}{p'}\braket*{q_i}{p}\conj\braket*{q_j'}{p'}\conj \nonumber\\
     &= \frac{1}{(2\cpi)^4} \e^{-\im\Dd{t}V(q_i, q_i', t)} \int\dd{p}\exp[-\im\Dd{t}\frac{p^2}{2m} + \im p(q_j - q_i)]\int\dd{p'}\exp[-\im\Dd{t}\frac{p'^2}{2m'} + \im p'(q_j' - q_i')^2] \nonumber\\
     &= \frac{(mm')^{\frac{1}{2}}}{8\cpi^3\im\Dd{t}}\exp[-\im\Dd{t}V(q_i, q_i', t) + \frac{\im m'}{2\Dd{t}}(q_j' - q_i')^2 + \frac{\im m}{2\Dd{t}}(q_j - q_i)^2].
 \end{align}
@@ -81,6 +81,77 @@ We can also expand the joint probability distribution in the form of the perturb
     &= \int \sum_n K_n(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0) \dd{q_0}\dd{q_0'} \\
     &= \sum_n \int K_n(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0) \dd{q_0}\dd{q_0'}
 \end{align}
+
+\section{Density operator in the position basis}
+
+In this section, we'll develop the mathematical foundations for analyzing the correlation and entanglement entropy of a bipartite system. We shall focus on the density matrix ($\dnst$), its trace and partial trace. The trace is used to find the correlation between the two subsystems, and the partial trace, the entanglement entropy. Let us consider a bipartite system under a potential $V$ that doesn't have any internal interactions. The density operator of a bipartite system $\eta$ can be written as
+\begin{equation}
+    \dnst = \ketbra{\eta}
+\end{equation}
+If the subsystems are denoted $\xi$ and $\xi'$, each one of them can be expanded into the position basis $\{\ket{q_n}\}$ and $\{\ket{q_n'}\}$:
+\begin{gather}
+    \ket{\xi} = \int\xi(q)\ket{q}\dd{q} \mathand \ket{\xi'} = \int\xi'(q')\ket{q'}\dd{q'}
+\end{gather}
+The total state $\ket{\eta} = \ket{\xi}\tensor\ket{\xi'}$ can also be expanded
+\begin{equation}
+    \ket{\eta} = \iint\xi(q)\xi'(q')\ket{q, q'}\dd{q}\dd{q'}.
+\end{equation}
+Analogously,
+\begin{equation}
+    \bra{\eta} = \iint\xi\conj(q)\xi'(q')\bra{q, q'}\dd{q}\dd{q'}
+\end{equation}
+Therefore, we can write the density operator $\dnst$ as
+\begin{align}
+    \dnst &= \iiiint\xi(q)\xi(q')\xi\conj(x)\xi\conj(x')\ketbra{q, q'}{x, x'}\dd{q}\dd{q'}\dd{x}\dd{x'}
+\end{align}
+where I have changed the integral variable from $q, q'$ to $x, x'$. The full trace of the density operator is the sum along the diagonal, which for our state 
+\begin{align}
+    \Tr(\dnst) &= \Tr(\ketbra{\eta}) \\
+    &= \iint\braket{q, q'}{\eta}\braket{\eta}{q, q'}\dd{q}\dd{q'} \\
+    &= \iint\xi(q)\xi\conj(q)\xi'(q')\xi^{\prime\ast}(q')\dd{q}\dd{q'} \\
+    &= \iint|\xi(q)\xi'(q')|^2\dd{q}\dd{q'} = \iint|\eta(q, q')|^2\dd{q}\dd{q'}
+\end{align}
+Or alternatively, we can expand the trace as a sum, which in the position basis becomes an integral, then use the commutation between the integral and the sum. Here, I renamed the integration variable as $y, y'$.
+\begin{align}
+    \Tr(\dnst) &= \Tr(\idotsint\xi(x)\xi'(x')\xi\conj(y)\xi^{\prime\ast}(y')\ketbra{x, x'}{y, y'}\dd{x}\dd{x'}\dd{y}\dd{y'}) \\
+    &= \idotsint\bra{q, q'}\left[\idotsint\xi(x)\xi'(x')\xi\conj(y)\xi^{\prime\ast}(y')\ketbra{x, x'}{y, y'}\dd{x}\dd{x'}\dd{y}\dd{y'}\right]\ket{q, q'}\dd{q}\dd{q'} \nonumber\\
+    &= \idotsint\xi(x)\xi'(x')\xi\conj(y)\xi^{\prime\ast}(y')\ddel(q - x)\ddel(q' - x')\ddel(q - y)\ddel(q' - y')\dd{x}\dd{x'}\dd{y}\dd{y'}\dd{q}\dd{q'} \nonumber \\
+    &= \iint\xi(q)\xi\conj(q)\xi'(q')\xi^{\prime\ast}(q')\dd{q}\dd{q'} \\
+    &= \iint|\xi(q)\xi'(q')|^2\dd{q}\dd{q'} = \iint|\eta(q, q')|^2\dd{q}\dd{q'}
+\end{align}
+If the state is pure, we can use the normalization condition to say that the trace of the density operator must be equal to one.
+
+The expectation value of an operator $\hat{A}$ on a state $\ket{\eta}$ is generally defined as
+\begin{equation}
+    \expval{\hat{A}} = \frac{\mel{\eta}{\hat{A}}{\eta}}{\braket{\eta}} 
+\end{equation}
+Assuming that the state is normalized, $\braket{\eta}$ is one and hence $\expval{\hat{A}} = \mel{\eta}{\hat{A}}{\eta}$. Since the norm is one, we can also write the expectation value of $\hat{A}$ as
+\begin{align}
+    \expval{\hat{A}} &= \mel{\eta}{\hat{A}}{\eta}\braket{\eta} \\
+    &= \bra{\eta}\left[\hat{A}\braket{\eta}\right]\ket{\eta} \\
+    &= \Tr(\hat{A}\braket{\eta}) = \Tr(\hat{A}\dnst)
+\end{align}
+
+Let us then consider the partial trace of the density operator. Given a bipartite system, the density operator of the first system (reduced density) can be written as
+\begin{equation}
+    \dnst_1 = \Tr_2(\dnst)
+\end{equation}
+where $\Tr_n$ is the partial trace over the $n$'th subsystem. The operator $\dnst_1$ has matrix elements
+\begin{align}
+    \mel{q_n}{\dnst_1}{q_{n'}} &= \int\bra{q_n, q'}\dnst\ket{q_{n'}, q'}\dd{q'} \\
+    &= \int\braket{q_n, q'}{\eta}\braket{\eta}{q_{n'}, q'}\dd{q'} \\
+    &= \int\eta(q_n, q')\eta\conj(q_{n'}, q')\dd{q'}
+\end{align}
+Therefore, the reduced density operator of the first system can be written as
+\begin{equation}
+    \dnst_1 = \iiint\eta(q_n, q')\eta\conj(q_{n'}, q')\ketbra{q_n}{q_n'}\dd{q_n}\dd{q_{n'}}\dd{q'}.
+\end{equation}
+Analogously,
+\begin{gather}
+    \mel{q_n'}{\dnst_2}{q_{n'}'} = \int\bra{q, q_n'}\dnst\ket{q, q_{n'}'}\dd{q} = \int\eta(q, q_n')\eta\conj(q, q_{n'}')\dd{q}, \\
+    \dnst_2 = \iiint\eta(q, q_n')\eta\conj(q, q_{n'}')\ketbra{q_n'}{q_{n'}'}\dd{q_n'}\dd{q_{n'}'}\dd{q}.
+\end{gather}
+We can then use these reduced density operator to analyze the entanglement entropy of a system.
 
 \section{Initial states of choice}
 \label{sec:initial_states_of_choice}
@@ -111,7 +182,7 @@ To plot its probability amplitude, we have to take its modulus squared, which eq
     \frac{m σ}{\sqrt{4 m^{2} σ^{4} + t_{F}^{2}}}\exp[\frac{- 2 m^{2} q_{F}^{2} σ^{2} + 4 m^{2} q_{F} s σ^{2} - 2 m^{2} s^{2} σ^{2} + 4 m p q_{F} t_{F} σ^{2} - 4 m p s t_{F} σ^{2} - 2 p^{2} t_{F}^{2} σ^{2}}{4 m^{2} σ^{4} + t_{F}^{2}}]
 \end{equation}
 
-\section{The spring system}
+\section{The interacting spring system}
 
 The spring potential is given by $V(q, q') = \frac{k}{2}(q - q')^2$. I shall let $\alpha = \frac{k}{2}$ to simplify the notation a bit.
 
@@ -232,39 +303,39 @@ Therefore, the first order perturbation term of the spring system takes the form
     \times\left[-2\left(m(q_0 + q_F)^2 + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right]. \label{eq:spring_first_order_perturbation}
 \end{multline}
 
-\paragraph{Interpretation of the propagator} As of now, my knowledge of the propagator is pretty limited.
+\paragraph{Interpretation of the propagator} Notice that there are terms
 
 \subsection{Joint probability contribution from the first order perturbation term}
 
 Let us first analyze the time evolution of a separable wave packet with the initial state
 \begin{equation}
-    \eta(q_0, q_0; t_0) \equiv \frac{1}{2\cpi\sqrt{\sigma\sigma'}}\exp[\im pq_0 + \im p'q_0' - \frac{(q_0 - s)^2}{4\sigma^2} - \frac{(q_0' - s')^2}{4\sigma'^2}].
+    \eta(q_0, q_0; t_0) \equiv \sqrt{\frac{1}{2\cpi\sigma\sigma'}}\exp[\im pq_0 + \im p'q_0' - \frac{(q_0 - s)^2}{4\sigma^2} - \frac{(q_0' - s')^2}{4\sigma'^2}].
 \end{equation}
 For simplicity's sake, let
 \begin{gather*}
     \xi \equiv \exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2}], \quad \xi' \equiv \exp[\im p'q_0' - \frac{(q_0' - s')^2}{4\sigma'^2}], \\
-    K \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\exp[\frac{\im}{2t_F}(q_F - q_0)^2], \quad K' \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\exp[\frac{\im}{2t_F}(q_F' - q_0')^2].
+    K \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\exp[\frac{\im m}{2t_F}(q_F - q_0)^2], \quad K' \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\exp[\frac{\im m}{2t_F}(q_F' - q_0')^2].
 \end{gather*}
 Let us also set $t_0$ to be $0$. Using the first order perturbation term from \cref{eq:spring_first_order_perturbation}, the state at any following time $t_F$ is then
 \begin{align}
     \eta(q_F, q_F'; t_F) &= \iint\left(K_0(q_F, q_0; q_F', q_0'; t_F - t_0) + K_1(q_F, q_0; q_F', q_0'; t_F - t_0)\right)\eta(q_0, q_0'; t_0)\dd{q}\dd{q_0'} \\
     &= \begin{multlined}[t]
-        \frac{1}{2\cpi\sqrt{\sigma\sigma'}}\iint K_0(q_F, q_0; q_F', q_0'; t_F - t_0)\left\{1 - \im\frac{\alpha t_F}{6}\left[-2\left(m(q_0 + q_F)^2 \right.\right.\right.\\
+        \sqrt{\frac{1}{2\cpi\sigma\sigma'}}\iint K_0(q_F, q_0; q_F', q_0'; t_F - t_0)\left\{1 - \im\frac{\alpha t_F}{6}\left[-2\left(m(q_0 + q_F)^2 \right.\right.\right.\\
         \left.\left.\left. + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right]\vphantom{\frac{\alpha t_F}{6}}\right\}
         \\ \exp[\im pq_0 + \im p'q_0' - \frac{(q_0 - s)^2}{4\sigma^2} - \frac{(q_0' - s')^2}{4\sigma'^2}]\dd{q_0}\dd{q_0'}
     \end{multlined} \\
     &= \begin{multlined}[t]
-        \frac{1}{2\cpi\sqrt{\sigma\sigma'}}\iint KK'\xi\xi'\left\{1 - \im\frac{\alpha t_F}{6}\left[-2\left(m(q_0 + q_F)^2 \right.\right.\right.\\
+        \sqrt{\frac{1}{2\cpi\sigma\sigma'}}\iint KK'\xi\xi'\left\{1 - \im\frac{\alpha t_F}{6}\left[-2\left(m(q_0 + q_F)^2 \right.\right.\right.\\
         \left.\left.\left. + m(q_0' + q_F')^2 + \im t_F\right) + 2q_0q_0' + q_0q_F' + q_0'q_F + 2q_Fq_F'\right]\vphantom{\frac{\alpha t_F}{6}}\right\} \dd{q_0}\dd{q_0'}
     \end{multlined}
 \end{align}
 Note that this method of separation will work for all separable $\eta(t_0)$. Therefore, $\eta(t_0)$ doesn't have to be Gaussian: we just select it to be. The integral above can then be further expanded and broken down into smaller integrals:
 \begin{align}
     \eta(q_F, q_F'; t_F) &= \begin{multlined}[t]
-        \frac{1}{2\cpi\sqrt{\sigma\sigma'}}\left[\iint KK'\xi\xi'\dd{q_0}\dd{q_0'} \right.\\ \left.
+        \sqrt{\frac{1}{2\cpi\sigma\sigma'}}\left[\iint KK'\xi\xi'\dd{q_0}\dd{q_0'} \right.\\ \left.
         - \im\frac{\alpha t_F}{6}\iint KK'\xi\xi'\Big\{-2m(q_0^2 + 2q_0q_F + q_F^2 + q_0'^2 + 2q_0'q_F' + q_F'^2) \right.\\ \left.
         + 2q_0q_0' + 2q_Fq_F' + q_0q_F' + q_0'q_F + \im t_F\Big\}\dd{q_0}\dd{q_0'}  \vphantom{\iint}\right]
-    \end{multlined} \\
+    \end{multlined}
 \end{align}
 I shall let $I$ equals the term in the big square bracket:
 \begin{equation}
@@ -309,13 +380,13 @@ Thus, $I$; and hence $\eta$, becomes
         - \left(\frac{\im\alpha t_F}{6}\right) \left[-2m\left(I_2I_0' + I_0I_2'\right) - 4mq_F\left(I_1I_0' + I_0I_1'\right) + q_FI_0I_1' + q_F'I_1I_0' + 2I_1I_1' \right] \right\}
     \end{multlined}
 \end{equation}
-As said earlier, this equation is general for the spring propagator with separable initial state. When $\alpha = 0$, this joint probability distribution reduces down to the joint probability distribution for the free particle.
+Note that if you remove the normalization constant $\left(2\cpi\sigma\sigma\right)^{-\flatfrac{1}{2}}$, this equation becomes general joint probability distribution for the spring propagator with separable initial state. When $\alpha = 0$, this joint probability distribution reduces down to the joint probability distribution for the free particle.
 
 The integrals listed in \cref{eq:integral_components_spring_jpd} are then evaluated:
 \begin{gather}
-    I_0 = \int K\xi\dd{q_0} = \sqrt{\frac{m}{2\cpi\im t_F}}\sqrt[4]{\frac{1}{2\cpi\sigma}} \int \exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2]\dd{q_0} \\
-    I_1 = \int q_0K\xi\dd{q_0} = \sqrt{\frac{m}{2\cpi\im t_F}}\sqrt[4]{\frac{1}{2\cpi\sigma}} \int q_0\exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2]\dd{q_0} \\
-    I_2 = \int q_0^2K\xi\dd{q_0} = \sqrt{\frac{m}{2\cpi\im t_F}}\sqrt[4]{\frac{1}{2\cpi\sigma}} \int q_0^2\exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2]\dd{q_0}
+    I_0 = \int K\xi\dd{q_0} = \sqrt{\frac{m}{2\cpi\im t_F}} \int \exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2]\dd{q_0} \\
+    I_1 = \int q_0K\xi\dd{q_0} = \sqrt{\frac{m}{2\cpi\im t_F}} \int q_0\exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2]\dd{q_0} \\
+    I_2 = \int q_0^2K\xi\dd{q_0} = \sqrt{\frac{m}{2\cpi\im t_F}} \int q_0^2\exp[\im pq_0 - \frac{(q_0 - s)^2}{4\sigma^2} + \frac{\im m}{2t_F}(q_F - q_0)^2]\dd{q_0}
 \end{gather}
 All of these integrals are Gaussian integrals with the exponential argument
 \begin{align}
@@ -332,8 +403,8 @@ From \cref{sec:initial_states_of_choice},
 \end{equation}
 I shall let
 \begin{gather}
-    \Xi \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\sqrt[4]{\frac{1}{2\cpi\sigma}}\exp[\frac{4 \im m p q_{F} σ^{2} - m q_{F}^{2} + 2 m q_{F} s - m s^{2} - 2 \im p^{2} t_{F} σ^{2} - 2 p s t_{F}}{4 m σ^{2} + 2 \im t_{F}}], \\
-    \Xi' \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\sqrt[4]{\frac{1}{2\cpi\sigma'}}\exp[\frac{4 \im m p' q_F' σ'^2 - m q_F'^2 + 2 m q_{F}'s' - ms'^{2} - 2 \im p'^2t_Fσ'^{2} - 2p's't_F}{4m'σ'^2 + 2\im t_{F}}]
+    \Xi \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\exp[\frac{4 \im m p q_{F} σ^{2} - m q_{F}^{2} + 2 m q_{F} s - m s^{2} - 2 \im p^{2} t_{F} σ^{2} - 2 p s t_{F}}{4 m σ^{2} + 2 \im t_{F}}], \\
+    \Xi' \equiv \sqrt{\frac{m}{2\cpi\im t_F}}\exp[\frac{4 \im m p' q_F' σ'^2 - m q_F'^2 + 2 m q_{F}'s' - ms'^{2} - 2 \im p'^2t_Fσ'^{2} - 2p's't_F}{4m'σ'^2 + 2\im t_{F}}]
 \end{gather}
 which represents the unperturbed state of a particle. And,
 \begin{gather}
@@ -349,24 +420,28 @@ Therefore, with the change of primed and unprimed variables,
 $\eta$ then becomes
 \begin{align}
     \eta &= \begin{multlined}[t]
-        \frac{1}{2\cpi\sqrt{\sigma\sigma'}}\left\{ G_0G_0'\Xi\Xi'\left[1 + \left(\frac{\im\alpha t_F}{6}\right)\left(2m(q_F^2 + q_F'^2) - 2q_Fq_F' - \im t_F\right)\right] \right.\\
+        \frac{1}{\sqrt{2\cpi\sigma\sigma'}}\left\{ G_0G_0'\Xi\Xi'\left[1 + \left(\frac{\im\alpha t_F}{6}\right)\left(2m(q_F^2 + q_F'^2) - 2q_Fq_F' - \im t_F\right)\right] \right.\\
         - \left(\frac{\im\alpha t_F}{6}\right) \left[-2m\left(G_2G_0'\Xi\Xi' + G_0G_2'\Xi\Xi'\right) - 4mq_F\left(G_1G_0'\Xi\Xi' + G_0G_1'\Xi\Xi'\right) \right. \\ \left.\left.
         + q_FG_0G_1'\Xi\Xi' + q_F'G_1G_0'\Xi\Xi' + 2G_1G_1'\Xi\Xi'\right] \vphantom{\frac{1}{2\cpi\sqrt{\sigma\sigma'}}}\right\}
     \end{multlined} \\
     &= \begin{multlined}[t]
-        \frac{\Xi\Xi'}{2\cpi\sqrt{\sigma\sigma'}}\left\{ G_0G_0'\left[1 + \left(\frac{\im\alpha t_F}{6}\right)\left(2m(q_F^2 + q_F'^2) - 2q_Fq_F' - \im t_F\right)\right] \right.\\ \left.
+        \frac{\Xi\Xi'}{\sqrt{2\cpi\sigma\sigma'}}\left\{ G_0G_0'\left[1 + \left(\frac{\im\alpha t_F}{6}\right)\left(2m(q_F^2 + q_F'^2) - 2q_Fq_F' - \im t_F\right)\right] \right.\\ \left.
         - \left(\frac{\im\alpha t_F}{6}\right) \left[-2m\left(G_2G_0' + G_0G_2'\right) - 4mq_F\left(G_1G_0' + G_0G_1'\right)
         + q_FG_0G_1' + q_F'G_1G_0' + 2G_1G_1'\right] \vphantom{\frac{1}{2\cpi\sqrt{\sigma\sigma'}}}\right\}
     \end{multlined} \nonumber\\
     &= \begin{multlined}[t]
-        \frac{\Xi\Xi'}{2\cpi\sqrt{\sigma\sigma'}} \left\{ G_0G_0'\left[1 + \left(\frac{\im\alpha t_F}{6}\right) \left( 2m(q_F^2 + q_F'^2) - 2q_Fq_F' - \im t_F\right)\right] \right. \\ \left.
+        \frac{\Xi\Xi'}{\sqrt{2\cpi\sigma\sigma'}} \left\{ G_0G_0'\left[1 + \left(\frac{\im\alpha t_F}{6}\right) \left( 2m(q_F^2 + q_F'^2) - 2q_Fq_F' - \im t_F\right)\right] \right. \\ \left.
         - \left(\frac{\im\alpha t_F}{6}\right) \left[G_0(q_FG_1'(1 - 4m) - 2mG_2') + G_0'(q_FG_1(1 - 4m) - 2mG_2) + 2G_1G_1'\right] \right\}
     \end{multlined}
 \end{align}
 
-We then proceed to normalize the state $\eta$
+To analyze this statistically, we'd have to normalize the state, i.e.,
+\begin{equation}
+    \iint|\eta(q_F, q_F'; t_F)|^2\dd{q_0}\dd{q_0'} = 1 \label{eq:spring_jpd_normalization_condition}
+\end{equation}
+where $C$ is the normalization constant. To simplify our notation further, let $q_F = q$, $q_F' = q'$, and $t_F = t$. Thus,
 
-\subsection{Entanglement entropy}
+\subsection{Correlation function of the first order perturbation of interacting spring system}
 
 \subsection{Joint probability contribution from the first order perturbation term on an entangled state}
 
@@ -415,6 +490,4 @@ The integral once again can be broken into nine integrals that must be integrate
 %     &= 
 % \end{align}
 
-\section{Anharmonic oscillator}
-
-An anharmonic oscillator's potential is in the form
+\section{The infinite potential well}

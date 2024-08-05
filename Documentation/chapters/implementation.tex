@@ -1,9 +1,11 @@
 \chapter{Implementation of simulations}
 \label{sec:implementation_of_simulation}
 
+\section{The bruteforce approach}
+
 To represent the joint probability distribution of a two particle system, we need four axes. Two for the position of each Hilbert space that those particles belong in, one for the probability amplitude, and one for the time.
 \begin{align}
-    P(q_F, q_F'; t_F) &= |\braket{q_F, q_F'}{\eta(t_F)}|^2 \\
+    P(q_F, q_F'; t_F) &= \left|\braket{q_F, q_F'}{\eta(t_F)}\right|^2 \\
     &= \left|\iint K(q_F, q_F', t_F; q_0, q_0', t_0)\eta(q_0, q_0', t_0)\dd{q_0}\dd{q_0'}\right|^2 \\
     &= \left|\iint \left\{\sum_{i = 0}^{\infty}K_i(q_F, q_F', t_F; q_0, q_0', t_0)\right\}\eta(q_0, q_0', t_0)\dd{q_0}\dd{q_0'}\right|^2 \\
     \intertext{For this equation to work with a discrete simulation, we need to exchange the integral sign with the summation sign:}
@@ -59,3 +61,5 @@ end
 
 surface(pos1Vect, pos2Vect, abs2.(finalMat))
 \end{minted}
+
+\section{Parallelization approach}
