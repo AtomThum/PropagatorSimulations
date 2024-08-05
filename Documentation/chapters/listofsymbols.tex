@@ -1,0 +1,43 @@
+\setabbreviationstyle[acronym]{long-short}
+
+\newglossarystyle{longright}{%
+    \setglossarystyle{long}%
+    \renewenvironment{theglossary}{%
+        \renewcommand{\arraystretch}{1.1} % Adjust the line spacing here
+        \begin{longtable}{@{}p{0.25\linewidth}p{0.75\linewidth}}}%
+        {\end{longtable}}%
+    \renewcommand{\glossentry}[2]{%
+        \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
+        \raggedleft\glossentrydesc{##1}\tabularnewline
+    }%
+    \renewcommand*{\glsgroupskip}{}
+}
+
+\makeglossaries
+
+\glsxtrnewsymbol[description = {Identity unit}]{unit}{$\mathbb{1}$}
+\glsxtrnewsymbol[description = {Extension of arbritary operator $A$ defined in $\hilb_n$ onto $\hilb$}]{operatorextension}{$\tilde{A}$}
+\glsxtrnewsymbol[description = {Path integral measure on a variable}]{pintm}{$\pintm{q}$}
+\glsxtrnewsymbol[description = {The Euler's constant}]{e}{$\e$}
+\glsxtrnewsymbol[description = {Hilbert space of the whole system}]{hilb}{$\hilb$}
+\glsxtrnewsymbol[description = {The $n$\textsuperscript{th} subspace of Hilbert space}]{hilbsub}{$\hilb_n$}
+\glsxtrnewsymbol[description = {Planck's constant}]{planck}{$h$}
+\glsxtrnewsymbol[description = {Reduced Planck's constant. $\hbar = {h}/{2\cpi}$}]{reducedplanck}{$\hbar$}
+\glsxtrnewsymbol[description = {Hamiltonian of a system}]{haml}{$\haml$}
+\glsxtrnewsymbol[description = {The imaginary unit}]{i}{$\im$}
+\glsxtrnewsymbol[description = {The identity matrix/identity operator}]{iden}{$\iden$}
+\glsxtrnewsymbol[description = {Propagator from point $q_F, t_F$ to $q_0, t_0$ using the Lagrangian of particle $\mathcal{A}$}]{propagator}{$K_{\mathcal{A}}(q_F, t_F; q_0, t_0)$}
+\glsxtrnewsymbol[description = {Propagator of a separable system. Extra arguments represents the usage on bipartite systems.}]{propagatorseparable}{$K_0(q\prime, t\prime; q_0, t_0)$}
+\glsxtrnewsymbol[description = {Generalized momentum}]{generalizedmomenetum}{$p$}
+\glsxtrnewsymbol[description = {Generalized position}]{generalizedposition}{$q$}
+\glsxtrnewsymbol[description = {Set of arbitrary basis $\ket{u_1}, \ket{u_2},\dots$ of a Hilbert space with index $i$}]{basis}{$\{\ket{u_i}\}$}
+\glsxtrnewsymbol[description = {Time evolution operator. Evolves the time of the system from $t_A$ to $t_B$}]{timeevolve}{$\hat{U}(t_B, t_A)$}
+\glsxtrnewsymbol[description = {Eigenvalue of arbritary ket $\ket{\psi}$}]{eigenvalue}{$\alpha_{\psi}$}
+\glsxtrnewsymbol[description = {Ket of the whole system. Used when describing a bipartite system}]{ketofsystem}{$\ket{\eta}$}
+\glsxtrnewsymbol[description = {Ket of the subsystems. Used when describing a monopartite system}]{ketofsystem2}{$\ket{\xi}$}
+\glsxtrnewsymbol[description = {The Archimedes' constant}]{pi}{$\cpi$}
+\glsxtrnewsymbol[description = {Tensor product}]{tenspr}{$\tensor$}
+
+\makeatletter
+\renewcommand*{\@@glossarysec}{section}
+\makeatother

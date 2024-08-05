@@ -1,22 +1,16 @@
 \chapter{The generalized Gaussian integrals}
 
-\section{Preliminary form}
-
 A Gaussian integral is the integral of the Gaussian function $\exp[-x^2]$:
 \begin{equation}
     \int_{\infty}^{-\infty} \exp[-x^2]\dd{x} = \sqrt{\cpi}.
 \end{equation}
-However, this is not that useful for path integrals, because it demands a more generalized form of this Gaussian function. Therefore, we focus on integrals of the form
+However, the path integral method usually demands a more generalized form of the Gaussian integral denoted in this study with $\Omega_n$:
 \begin{equation}
-    I_1 = \int_{\infty}^{-\infty} x^n\exp[-(ax^2 + bx + c)]\dd{x},\label{eq:generalized_gaussian}
+    \Omega_n(a, b, c; x) \equiv \int_{\infty}^{-\infty} x^n\exp[-(ax^2 + bx + c)]\dd{x},\label{eq:generalized_gaussian}
 \end{equation}
-where $a$, $b$, and $c$ are constants and $n$ is a positive integer. This integral will be very useful later on when evaluating the Born expansion of the propagator.
+where $a$, $b$, and $c$ are constants and $n$ is a positive integer. Because we're mostly going to be dealing with indefinite integrals, all integrals without a bound is assumed to be evaluated from $-\infty$ to $\infty$.
 
-Because we're just going to be dealing with integrals from negative to positive infinity, I shall omit the bounds of the integrals. Thus, every integral written with no bounds from now on are assumed to be a definite integral from negative to positive infinity.
-
-\section{Evaluation}
-
-To evaluate $I_1$ (\cref{eq:generalized_gaussian}), we shall complete the square first, then substitute the exponents to fit the form of the standard Gaussian integral.
+To evaluate $\Omega_n$ (\cref{eq:generalized_gaussian}), we shall complete the square first, then substitute the exponents to fit the form of the standard Gaussian integral.
 \begin{align*}
     \int x^n\e^{-(ax^2 + bx + c)}\dd{x} &= \int x^n\exp[-a\left(x + \frac{b^2}{2a}\right)^2 + \frac{b^2}{4a} - c]\dd{x} \\
     &= \e^{\frac{b^2}{4a} - c}\int x^n\exp[-a\left(x + \frac{b^2}{2a}\right)]\dd{x}.
@@ -30,33 +24,33 @@ Let
 \end{align}
 Then,
 \begin{align}
-    I_1 &= \e^{\frac{b^2}{4a} - c}\frac{1}{\sqrt{a}}\int\left(\frac{u}{\sqrt{a}} - \frac{b^2}{2a}\right)^n\e^{-u^2}\dd{u}. \\
+    \Omega_n &= \e^{\frac{b^2}{4a} - c}\frac{1}{\sqrt{a}}\int\left(\frac{u}{\sqrt{a}} - \frac{b^2}{2a}\right)^n\e^{-u^2}\dd{u}. \\
     &= \e^{\frac{b^2}{4a} - c}\frac{1}{\sqrt{a}}\int\sum_{k = 0}^{n}{n \choose k}\left(\frac{b^2}{2a}\right)^{n - k}\left(\frac{u}{\sqrt{a}}\right)^k\e^{-u^2}\dd{u}. \\
     &= \e^{\frac{b^2}{4a} - c}\frac{1}{\sqrt{a}}\sum_{k = 0}^{n}\left[{n \choose k}\left(\frac{b^2}{2a}\right)^{n - k}\left(\frac{1}{\sqrt{a}}\right)^{k} \int u^k\e^{u^2}\dd{u}\right], \label{eq:generalized_gaussian-1}
 \end{align}
-i.e., $I_1$ can be written as a sum of
+i.e., $\Omega_n$ can be written as a sum of
 \begin{equation}
-    I_0 = \int u^k\e^{-u^2}\dd{u}.
+    \omega = \int u^k\e^{-u^2}\dd{u}.
 \end{equation}
-Notice that when $n$ is odd, the integrand of $I_0$ is an odd function. Therefore, $I_0$ is zero whenever $n$ is odd. When $n$ is even however, the integrand is even. Thus, it can be simplified to
+Notice that when $n$ is odd, the integrand of $\omega$ is an odd function; thus, $\omega$ is zero when $n$ is odd. When $n$ is even however, the integrand is even and thus can be simplified into
 \begin{equation}
-    2\int_{0}^{\infty} u^{2m}\e^{-u^2}\dd{u}
+    \omega = 2\int_{0}^{\infty} u^{2m}\e^{-u^2}\dd{u}
 \end{equation}
-where $k = 2m$. We then do another substitution by letting $-t = -u^2$. Thus, $u = \sqrt{t}$ and $\dd{u} = \flatfrac{\dd{t}}{2\sqrt{t}}$. Both infinity and zero aren't affected by a square root, therefore the bound doesn't change. Our integral then becomes
+where $k = 2m$. We then do another substitution by letting $-t = -u^2$. Thus, $u = \sqrt{t}$ and $\dd{u} = \flatfrac{\dd{t}}{2\sqrt{t}}$. The bound of the integral isn't affected by a radical. Our integral then becomes
 \begin{align}
-    &2 \times \int_{0}^{\infty}t^{m}\e^{-t}\frac{1}{2\sqrt{t}}\dd{t}. \\
+    \omega &= 2 \times \int_{0}^{\infty}t^{m}\e^{-t}\frac{1}{2\sqrt{t}}\dd{t}. \\
     &= \int_{0}^{\infty}t^{m - \frac{1}{2}}\e^{-t}\dd{t} \\
     &= \int_{0}^{\infty}t^{m + \frac{1}{2} - 1}\e^{-t}\dd{t} \\
     &= \fgamma\left(m + \frac{1}{2}\right) \\
     &= \fgamma\left(\frac{k + 1}{2}\right).
 \end{align}
-Since the integral evaluates to the gamma function for only even numbers, we add a term that makes $I_0 = 0$ when $n$ is odd:
+Since the integral evaluates to the gamma function for only even numbers, we add a term that makes $\omega = 0$ when $n$ is odd:
 \begin{equation}
-    I_0 = \frac{1}{2}((-1)^k + 1)\fgamma\left(\frac{k + 1}{2}\right).
+    \omega = \frac{1}{2}((-1)^k + 1)\fgamma\left(\frac{k + 1}{2}\right).
 \end{equation}
 Thus, from \cref{eq:generalized_gaussian-1},
 \begin{equation}
-    I_1 = \e^{\frac{b^2}{4a} - c}\frac{1}{\sqrt{a}}\sum_{k = 0}^{n}\left[{n \choose k}\left(\frac{b^2}{2a}\right)^{n - k}\left(\frac{1}{\sqrt{a}}\right)^{k} \frac{1}{2}((-1)^k + 1)\fgamma\left(\frac{k + 1}{2}\right)\right]
+    \Omega_n = \e^{\frac{b^2}{4a} - c}\frac{1}{\sqrt{a}}\sum_{k = 0}^{n}\left[{n \choose k}\left(\frac{b^2}{2a}\right)^{n - k}\left(\frac{1}{\sqrt{a}}\right)^{k} \frac{1}{2}((-1)^k + 1)\fgamma\left(\frac{k + 1}{2}\right)\right]
 \end{equation}
 To continue this, we then expand the combinatorics and use the formulas of arguments with half-integer real part to get
 \begin{align}
@@ -70,30 +64,39 @@ To simplify the summation, we replace $k$ with $2k$, and the upper limit with $m
 \begin{equation}
     \left[\sum_{k = 0}^{m}\frac{1}{(n - 2k)!k!}\left(\frac{\sqrt{a}}{b^2}\right)^{2k}\right]\e^{\frac{b^2}{4a} - c}n!\left(\frac{b^2}{2a}\right)^n\sqrt{\frac{\cpi}{a}}
 \end{equation}
-As far as I know, this equation cannot be simplified further.
+As a convention in this study, I shall define
+\begin{equation}
+    \int_{\infty}^{\infty}x^n\exp[-ax^2 - bx - c]\dd{x} = \Omega_n(a, b, c; x) \equiv \zeta_n(a, b, c)\kappa(a, b, c) 
+\end{equation}
+where
+\begin{gather}
+    \zeta_n(a, b, c) \equiv \left[\sum_{k = 0}^{m}\frac{1}{(n - 2k)!k!}\left(\frac{\sqrt{a}}{b^2}\right)^{2k}\right]n!\left(\frac{b^2}{2a}\right)^n\sqrt{\frac{\cpi}{a}}, \\
+    \kappa(a, b, c) \equiv \exp[\frac{b^2}{4a} - c].
+\end{gather}
+I shall refer to $\zeta$ as the coefficient of the Gaussian integral, and $\kappa$, the resulting exponent. The following section is a table for values of $\zeta_n$ from $n = 1$ to $10$. 
 
-\paragraph{Comment on the generalized Gaussian integral} Note that the integral in \cref{eq:generalized_gaussian} can be casted in the form of Meijer's $G$ function for $n \geq 0$:
+\paragraph{Comment on the generalized Gaussian integral} The generalized Gaussian integral can be cast in the form of Meijer's $G$ function. For $n \geq 0$,
 \begin{multline}
     \int x^n\exp[-ax^2 - bx - c]\dd{x} \\= \frac{e^{-c}}{2\sqrt{\cpi}ab}\left[- \frac{2^{n + 1}a}{b^n} {G_{2, 1}^{1, 2}\left(\begin{matrix} \frac{1 - n}{2}, - \frac{n}{2}  \\0 \end{matrix} \middle| {\frac{4 a e^{- 2 i \pi}}{b^{2}}} \right)} + a^{\frac{1 - n}{2}}b {G_{1, 2}^{2, 1}\left(\begin{matrix} \frac{1 - n}{2}\\0, \frac{1}{2}\end{matrix} \middle| {\frac{b^{2}}{4 a}} \right)}\right]
 \end{multline}
-However, this form doesn't seem to be very helpful when we try to evaluate the polynomial part of the Gaussian integral because of the nature of the Meijer's $G$ function that's defined with integral of products.
+However, this form isn't that helpful because the Meijer's $G$ function is defined with integral of products.
 
-Originally, I was going to evaluate everything using \texttt{SymPy}, and not really care about anything else. However, I came to realize that \texttt{SymPy} doesn't bother integrating any Gaussian integrals that have complex number components. My own implementation will be written in \cref{sec:implementation_of_simulation} 
+Originally, I was going to evaluate everything using \texttt{SymPy}. However, \texttt{SymPy} doesn't bother integrating any Gaussian integrals that have complex arguments. My own implementation is written in \cref{sec:implementation_of_simulation} 
 
 \section{Tables of Gaussian integrals with varying orders}
 \label{sec:table_of_gaussian_integrals}
 
 \everymath{\displaystyle}
-\begin{enumerate}[label = {$n = \arabic*$:}]
+\begin{enumerate}[label = {$\zeta_\arabic*$:}]
     \setcounter{enumi}{-1}
-    \item $+\frac{1}{1}\sqrt{\frac{\cpi}{a}}\e^{\frac{b^2}{4a} - c}$
-    \item $-\frac{b}{2}\sqrt{\frac{\cpi}{a^3}} \e^{\frac{b^2}{4a} - c}$
-    \item $+\frac{1}{4}\sqrt{\frac{\cpi}{a^5}} (2a + b^2) \e^{\frac{b^2}{4a} - c}$
-    \item $-\frac{b}{8}\sqrt{\frac{\cpi}{a^7}} (6a + b^2) \e^{\frac{b^2}{4a} - c}$
-    \item $+\frac{1}{16}\sqrt{\frac{\cpi}{a^9}} (12a^2 + 12ab^2 + b^4)\e^{\frac{b^2}{4a} - c}$
-    \item $-\frac{b}{32}\sqrt{\frac{\cpi}{a^{11}}} (60a^2 + 20ab^2 + b^2)\e^{\frac{b^2}{4a} - c}$
-    \item $+\frac{1}{64}\sqrt{\frac{\cpi}{a^{13}}} (120a^3 + 180a^2b^2 + 30ab^4 + b^6)\e^{\frac{b^2}{4a} - c}$
-    \item $-\frac{b}{128}\sqrt{\frac{\cpi}{a^{15}}} (840a^3 + 420a^2b^2 + 42ab^4 + b^6)\e^{\frac{b^2}{4a} - c}$
-    \item $+\frac{1}{256}\sqrt{\frac{\cpi}{a^{17}}} (1680a^4 + 3360a^3b^2 + 840a^2b^4 + 56ab^6 + b^8)\e^{\frac{b^2}{4a} - c}$
-    \item $-\frac{b}{512}\sqrt{\frac{\cpi}{a^{19}}} (15120a^4 + 10080a^3b^2 + 1512a^2b^4 + 72ab^6 + b^8)\e^{\frac{b^2}{4a} - c}$
+    \item $+\frac{1}{1}\sqrt{\frac{\cpi}{a}}$
+    \item $-\frac{b}{2}\sqrt{\frac{\cpi}{a^3}}$
+    \item $+\frac{1}{4}\sqrt{\frac{\cpi}{a^5}} (2a + b^2)$
+    \item $-\frac{b}{8}\sqrt{\frac{\cpi}{a^7}} (6a + b^2)$
+    \item $+\frac{1}{16}\sqrt{\frac{\cpi}{a^9}} (12a^2 + 12ab^2 + b^4)$
+    \item $-\frac{b}{32}\sqrt{\frac{\cpi}{a^{11}}} (60a^2 + 20ab^2 + b^2)$
+    \item $+\frac{1}{64}\sqrt{\frac{\cpi}{a^{13}}} (120a^3 + 180a^2b^2 + 30ab^4 + b^6)$
+    \item $-\frac{b}{128}\sqrt{\frac{\cpi}{a^{15}}} (840a^3 + 420a^2b^2 + 42ab^4 + b^6)$
+    \item $+\frac{1}{256}\sqrt{\frac{\cpi}{a^{17}}} (1680a^4 + 3360a^3b^2 + 840a^2b^4 + 56ab^6 + b^8)$
+    \item $-\frac{b}{512}\sqrt{\frac{\cpi}{a^{19}}} (15120a^4 + 10080a^3b^2 + 1512a^2b^4 + 72ab^6 + b^8)$
 \end{enumerate}
