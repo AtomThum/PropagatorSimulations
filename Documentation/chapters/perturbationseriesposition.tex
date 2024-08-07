@@ -1,6 +1,7 @@
 \chapter{Path integrals of bipartite systems in the position basis}
 
 \section{General theory for the propagator of two particles}
+\label{sec:general_theory_propagator_position}
 
 \subsection{Non-interacting systems}
 
@@ -102,14 +103,14 @@ Analogously,
 \end{equation}
 Therefore, we can write the density operator $\dnst$ as
 \begin{align}
-    \dnst &= \iiiint\xi(q)\xi(q')\xi\conj(x)\xi\conj(x')\ketbra{q, q'}{x, x'}\dd{q}\dd{q'}\dd{x}\dd{x'}
+    \dnst &= \iiiint\xi(q)\xi(q')\xi\conj(x)\xi\conj(x')\ketbra{q, q'}{x, x'}\dd{q}\dd{q'}\dd{x}\dd{x'},
 \end{align}
 where I have changed the integral variable from $q, q'$ to $x, x'$. The full trace of the density operator is the sum along the diagonal, which for our state 
 \begin{align}
     \Tr(\dnst) &= \Tr(\ketbra{\eta}) \\
     &= \iint\braket{q, q'}{\eta}\braket{\eta}{q, q'}\dd{q}\dd{q'} \\
     &= \iint\xi(q)\xi\conj(q)\xi'(q')\xi^{\prime\ast}(q')\dd{q}\dd{q'} \\
-    &= \iint|\xi(q)\xi'(q')|^2\dd{q}\dd{q'} = \iint|\eta(q, q')|^2\dd{q}\dd{q'}
+    &= \iint|\xi(q)\xi'(q')|^2\dd{q}\dd{q'} = \iint|\eta(q, q')|^2\dd{q}\dd{q'}.
 \end{align}
 Or alternatively, we can expand the trace as a sum, which in the position basis becomes an integral, then use the commutation between the integral and the sum. Here, I renamed the integration variable as $y, y'$.
 \begin{align}
@@ -117,20 +118,30 @@ Or alternatively, we can expand the trace as a sum, which in the position basis 
     &= \idotsint\bra{q, q'}\left[\idotsint\xi(x)\xi'(x')\xi\conj(y)\xi^{\prime\ast}(y')\ketbra{x, x'}{y, y'}\dd{x}\dd{x'}\dd{y}\dd{y'}\right]\ket{q, q'}\dd{q}\dd{q'} \nonumber\\
     &= \idotsint\xi(x)\xi'(x')\xi\conj(y)\xi^{\prime\ast}(y')\ddel(q - x)\ddel(q' - x')\ddel(q - y)\ddel(q' - y')\dd{x}\dd{x'}\dd{y}\dd{y'}\dd{q}\dd{q'} \nonumber \\
     &= \iint\xi(q)\xi\conj(q)\xi'(q')\xi^{\prime\ast}(q')\dd{q}\dd{q'} \\
-    &= \iint|\xi(q)\xi'(q')|^2\dd{q}\dd{q'} = \iint|\eta(q, q')|^2\dd{q}\dd{q'}
+    &= \iint|\xi(q)\xi'(q')|^2\dd{q}\dd{q'} = \iint|\eta(q, q')|^2\dd{q}\dd{q'}.
 \end{align}
 If the state is pure, we can use the normalization condition to say that the trace of the density operator must be equal to one.
 
 The expectation value of an operator $\hat{A}$ on a state $\ket{\eta}$ is generally defined as
 \begin{equation}
-    \expval{\hat{A}} = \frac{\mel{\eta}{\hat{A}}{\eta}}{\braket{\eta}} 
+    \expval*{\hat{A}} = \frac{\mel{\eta}{\hat{A}}{\eta}}{\braket{\eta}} 
 \end{equation}
 Assuming that the state is normalized, $\braket{\eta}$ is one and hence $\expval{\hat{A}} = \mel{\eta}{\hat{A}}{\eta}$. Since the norm is one, we can also write the expectation value of $\hat{A}$ as
 \begin{align}
-    \expval{\hat{A}} &= \mel{\eta}{\hat{A}}{\eta}\braket{\eta} \\
-    &= \bra{\eta}\left[\hat{A}\braket{\eta}\right]\ket{\eta} \\
-    &= \Tr(\hat{A}\braket{\eta}) = \Tr(\hat{A}\dnst)
+    \expval*{\hat{A}} &= \mel{\eta}{\hat{A}}{\eta}\braket{\eta} \\
+    &= \bra{\eta}\left[\hat{A}\ketbra{\eta}\right]\ket{\eta} \\
+    &= \Tr(\hat{A}\ketbra{\eta}) = \Tr(\hat{A}\dnst).
 \end{align}
+The covariance between two operators: $\hat{A}$ and $\hat{B}$, $\cov_{\hat{A}\hat{B}}$ is defined as
+\begin{equation}
+    \cov_{\hat{A}\hat{B}} = \expval*{\hat{A}\hat{B}} - \expval*{\hat{A}}\times\expval*{\hat{B}} = \Tr(\hat{A}\hat{B}\dnst) - \Tr{\hat{A}\rho}\Tr{\hat{B}\rho},
+\end{equation}
+which represents the direction of the relationship between two variables. If the covariance is positive, that means the two operators tend to correlate. If it's negative, then the two operators tend to anti-correlate. And, if the covariance is zero, the two operators are linearly dependent. However, it does not include other forms of dependencies, e.g., quadratic, or cubic.
+To find the correlation between two operators ($\corr_{\hat{A}\hat{B}}$), we have to divide the covariance by the product of standard deviation.
+\begin{equation}
+    \corr_{\hat{A}\hat{B}} = \frac{\cov_{\hat{A}\hat{B}}}{\sigma_A\sigma_B} \mathand \sigma_{\hat{A}} = \sqrt{\ev*{\hat{A}^2} - \ev*{\hat{A}}^2}, \\
+\end{equation}
+However, I shall primarily focus on the covariance: it should be enough to give the big picture of the degree of correlations. This is solely because the tediousness of evaluating the standard deviation.
 
 Let us then consider the partial trace of the density operator. Given a bipartite system, the density operator of the first system (reduced density) can be written as
 \begin{equation}
@@ -152,6 +163,12 @@ Analogously,
     \dnst_2 = \iiint\eta(q, q_n')\eta\conj(q, q_{n'}')\ketbra{q_n'}{q_{n'}'}\dd{q_n'}\dd{q_{n'}'}\dd{q}.
 \end{gather}
 We can then use these reduced density operator to analyze the entanglement entropy of a system.
+
+The bipartite von Neumann entanglement entropy $\entrp$ of is defined as the von Neumann entropy of either of its reduced states.
+\begin{equation}
+    \entrp(\dnst_A) = -\Tr(\dnst_A\ln\dnst_A)
+\end{equation}
+The result is independent of the reduced state chosen. The base of the logarithm might differ from different authors, but for simplicity, I shall use the natural logarithm: they all differ by just a constant factor. The von Neumann entanglement entropy can then be expanded in an integral form.
 
 \section{Initial states of choice}
 \label{sec:initial_states_of_choice}
