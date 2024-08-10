@@ -2,3 +2,12 @@ integrand
 Meijer
 eigenbra
 ket
+Deesuwan
+Tanapat
+Thumbanthu
+Puripat
+Ekapong
+Hirunsirisawat
+tikz
+compat
+Hadamard

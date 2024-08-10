@@ -7,7 +7,7 @@
 
 The propagator for a single particle system is used to find the probability distribution $\tilde{P}(x)$ of a state at anytime, i.e., for a state $\ket{\psi(t_0)}$ of a single particle,
 \begin{equation}
-    \tilde{P}(q_F, t_F) = \braket{q_F}{\psi(t_F)} = \int K(q_F, q_0; \Dd{t})\psi(q_0, t_0)\dd{q_0}.
+    \tilde{P}(q_F, t_F) = \braket{q_F}{\psi(t_F)} = \int K(q_F, q_0; t_F - t_0)\psi(q_0, t_0)\dd{q_0}.
 \end{equation}
 The probability of finding the particle at any point $(q_F, t_F)$ in spacetime is defined as
 \begin{equation}
@@ -72,18 +72,77 @@ The perturbation series for one particle are already given by Feynman in his pat
 \begin{equation}
     K_n(F, 0) = \left(-\im\right)^n\idotsint K_0(F, n)\prod_{i = 1}^n V(i)K_0(i, i - 1)\dd{\tau_i}
 \end{equation}
-where $K_n$ is the $n$'th order perturbation, $K(j, k) = K(q_j, t_j; q_k, t_k)$, $K = \ssum_nK_n$ and $\dd{\tau_i} = \dd{q_i}\dd{q_i}\dd{t_i}$. To apply it with two particles, we extend it:
+where $K_n$ is the $n$'th order perturbation, $K(j, k) = K(q_j, t_j; q_k, t_k)$, $K = \ssum_nK_n$ and $\dd{\tau_i} = \dd{q_i}\dd{q_i}\dd{t_i}$. To apply it with two particles, we extend it as follows.
+
+The propagator for two particles can be written as
+\begin{align}
+    &K(q_F, q_F'; q_0, q_0'; t_F - t_0) \nonumber\\
+    &= \int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2 - V(q, q')\dd{t}]\pintm{q}\pintm{q'} \\
+    &= \int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\exp[-\im\int_{t_0}^{t_F}V(q, q')\dd{t}]\pintm{q}\pintm{q'}
+\end{align}
+The exponential can be expanded using the Taylor series:
+\begin{multline}
+    \exp[-\im\int_{t_0}^{t_F}V(q, q')\dd{t}] = 1 + (-\im)\int_{t_0}^{t_F}V(q, q')\dd{t} \\+ \frac{1}{2!}(-\im)^2\left(\int_{t_0}^{t_F}V(q, q')\dd{t}\right)^2 + \frac{1}{3!}(-\im)^3\left(\int_{t_0}^{t_F}V(q, q')\dd{t}\right)^3
+\end{multline}
+We then insert this into the original integral. To avoid confusion, I've changed the integration variable from $t$ to $s$.
+\begin{align}
+    &K(q_F, q_F'; q_0, q_0'; t_F - t_0) \\
+    &= \begin{multlined}[t]
+        \int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\pintm{q}\pintm{q'} \\
+        + (-\im)^2\int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\pintm{q}\pintm{q'}\int_{t_0}^{t_F}V(q(s), q'(s))\dd{s} \\
+        + \frac{1}{2!}(-\im)^3\int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\pintm{q}\pintm{q'}\int_{t_0}^{t_F} \\
+        \times \int_{t_0}^{t_F}V(q(s), q'(s))\dd{s}\int_{t_0}^{t_F}V(q(s'), q'(s'))\dd{s'} + \dots
+    \end{multlined}
+\end{align}
+In which,
+\begin{align}
+    &K_0(q_F, q_F'; q_0, q_0'; t_F - t_0) = \begin{multlined}
+        \int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\pintm{q}\pintm{q'}
+    \end{multlined} \\
+    &\begin{multlined}
+        K_1(q_F, q_F'; q_0, q_0'; t_F - t_0) \\= (-\im)^2\int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\pintm{q}\pintm{q'}\int_{t_0}^{t_F}V(q(s), q'(s))\dd{s}
+    \end{multlined} \\
+    &\begin{multlined}
+        K_2(q_F, q_F'; q_0, q_0'; t_F - t_0) \\= \frac{1}{2!}(-\im)^3\int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\pintm{q}\pintm{q'} \\
+        \times \int_{t_0}^{t_F}V(q(s), q'(s))\dd{s}\int_{t_0}^{t_F}V(q(s'), q'(s'))\dd{s'}
+    \end{multlined}
+\end{align}
+and so on and so forth. To evaluate each of the perturbation terms, we exchange the integral order and put the time integral at the front. E.g., for the first perturbation term,
+\begin{equation}
+    K_1(q_F, q_F'; q_0, q_0'; t_F - t_0) = (-\im)\int_{t_0}^{t_F}F_1(s)\dd{s}
+\end{equation}
+where
+\begin{align}
+    F_1(s) &= \int_{q_0'}^{q_F'}\int_{q_0}^{q_F}\exp[\im\int_{t_0}^{t_F}\frac{m}{2}\left(\dv{q}{t}\right)^2 + \frac{m}{2}\left(\dv{q'}{t}\right)^2\dd{t}]\pintm{q}\pintm{q'} \times V(q(s), q'(s)) \\
+    &=  K_0(q_F, q_F'; q_0, q_0; t_F - t_0)V(q(s), q'(s)).
+\end{align}
+I shall name $(q(s), q'(s')) = (q_1, q_1')$. Using the composition property,
+\begin{equation}
+    K(q_F, q_F'; q_0, q_0'; t_F - t_0) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}K_0(q_F, q_F'; q_1, q_1'; t_F - t_1)K_0(q_1, q_1'; q_0, q_0; t_1 - t_0)\dd{q_1}\dd{q_1'}
+\end{equation}
+and therefore,
+\begin{gather}
+    F_1(q_1, q_1') = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}K_0(q_F, q_F'; q_1, q_1'; t_F - t_1)V(q_1, q_1')K_0(q_1, q_1'; q_0, q_0; t_1 - t_0), \\
+    \begin{multlined}
+        K_1(q_F, q_F'; q_0, q_0'; t_F - t_0) \\= (-\im)\int_{t_0}^{t_F}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}K_0(q_F, q_F'; q_1, q_1'; t_F - t_1)V(q_1, q_1')K_0(q_1, q_1'; q_0, q_0; t_1 - t_0)\dd{s}.
+    \end{multlined}
+\end{gather}
+Using similar argument, we can write the $n$'th perturbation term as
 \begin{equation}
     K_n(F, 0; F', 0') = \left(-\im\right)^n\idotsint K_0(F, n)K_0(F', n')\left[\prod_{i = 1}^nV(i)K_0(i, i - 1)K_0(i', i' - 1)\dd{q_i}\dd{q_i'}\dd{t_i}\right]. \label{eq:generaltwoparticleperturbation}
 \end{equation}
-We can also expand the joint probability distribution in the form of the perturbation series.
+where $i = (q_i, t_i)$. We've dropped the $\flatfrac{1}{n!}$ term off due to the bounds of the time integral, similar to how Feynman did it in his book \cite{feynman-2010}. The joint probability distribution can also be expanded in the form of the perturbation series.
 \begin{align}
     \eta(q_F, q_F'; t_F) &= \int K(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0)\dd{q_0}\dd{q_0'} \\
     &= \int \sum_n K_n(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0) \dd{q_0}\dd{q_0'} \\
     &= \sum_n \int K_n(q_F, q_F'; q_0, q_0'; t_F - t_0)\eta(q_0, q_0'; t_0) \dd{q_0}\dd{q_0'}
 \end{align}
+To calculate the joint probability distribution directly, we'd have to use the Born's expansion, but extended to two particles. For the first order Born's approximation,
+\begin{multline}
+    \eta(q_F, q_F'; t_F) = \eta_0(q_F, q_F'; t_F) \\- \im\iiint K(q_F, q_F'; q_0, q_0'; t_F - t)K(q_F, q_F'; q_0, q_0'; t_F - t)V(q_0, q_0')\eta_0(q_0, q_0'; t_0)\dd{q_0}\dd{q_0'}\dd{t}
+\end{multline}
 
-\section{Density operator in the position basis}
+\section{Density operator and its related quantities in the position basis}
 
 In this section, we'll develop the mathematical foundations for analyzing the correlation and entanglement entropy of a bipartite system. We shall focus on the density matrix ($\dnst$), its trace and partial trace. The trace is used to find the correlation between the two subsystems, and the partial trace, the entanglement entropy. Let us consider a bipartite system under a potential $V$ that doesn't have any internal interactions. The density operator of a bipartite system $\eta$ can be written as
 \begin{equation}
@@ -199,6 +258,8 @@ To plot its probability amplitude, we have to take its modulus squared, which eq
     \frac{m σ}{\sqrt{4 m^{2} σ^{4} + t_{F}^{2}}}\exp[\frac{- 2 m^{2} q_{F}^{2} σ^{2} + 4 m^{2} q_{F} s σ^{2} - 2 m^{2} s^{2} σ^{2} + 4 m p q_{F} t_{F} σ^{2} - 4 m p s t_{F} σ^{2} - 2 p^{2} t_{F}^{2} σ^{2}}{4 m^{2} σ^{4} + t_{F}^{2}}]
 \end{equation}
 
+\section{Non-interacting systems: the free particle}
+
 \section{The interacting spring system}
 
 The spring potential is given by $V(q, q') = \frac{k}{2}(q - q')^2$. I shall let $\alpha = \frac{k}{2}$ to simplify the notation a bit.
@@ -212,11 +273,11 @@ From \cref{eq:generaltwoparticleperturbation}, set $t_1 = t, t_0 = 0$
     &= \left(-\im\right)^1\iiint K_0(F, 1)K_0(F', 1')K_0(1, 0)K_0(1, 0')\alpha(q_1 - q_1')^2\dd{q_1}\dd{q_1'}\dd{t}. \\
     &= -\im\alpha\int_0^{t_F}\left[\iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)(q_1 - q_1')^2\dd{q_1}\dd{q_1'}\right]\dd{t}. \nonumber
 \end{align}
-We then let the terms in the square bracket,
+Let
 \begin{equation}
-    \iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)(q_1 - q_1')^2\dd{q_1}\dd{q_1'}
+    I \equiv \iint K_0(q_F, q_1; t_F - t)K_0(q_F', q_1'; t_F - t)K_0(q_1, q_0; t)K_0(q_1', q_0'; t)(q_1 - q_1')^2\dd{q_1}\dd{q_1'};
 \end{equation}
-equals $I$; therefore, $K_1 = -\im\alpha\int_0^{t_F} I\dd{t}$.
+thus, $K_1 = -\im\alpha\int_0^{t_F} I\dd{t}$.
 
 We then separate $I$ into three integrals:
 \begin{gather}
